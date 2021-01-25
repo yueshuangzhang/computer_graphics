@@ -1,0 +1,42 @@
+[
+{
+  "directory": "C:/Users/92972_lo8jks/Documents/GitHub/computer_graphics/computer-graphics-ray-casting-master/build",
+  "command": "P:\\mingw\\mingw64\\bin\\g++.exe  @CMakeFiles/raycasting.dir/includes_CXX.rsp  -std=c++11 -g -o CMakeFiles\\raycasting.dir\\src\\Plane.cpp.obj -c C:\\Users\\92972_lo8jks\\Documents\\GitHub\\computer_graphics\\computer-graphics-ray-casting-master\\src\\Plane.cpp",
+  "file": "C:/Users/92972_lo8jks/Documents/GitHub/computer_graphics/computer-graphics-ray-casting-master/src/Plane.cpp"
+},
+{
+  "directory": "C:/Users/92972_lo8jks/Documents/GitHub/computer_graphics/computer-graphics-ray-casting-master/build",
+  "command": "P:\\mingw\\mingw64\\bin\\g++.exe  @CMakeFiles/raycasting.dir/includes_CXX.rsp  -std=c++11 -g -o CMakeFiles\\raycasting.dir\\src\\Sphere.cpp.obj -c C:\\Users\\92972_lo8jks\\Documents\\GitHub\\computer_graphics\\computer-graphics-ray-casting-master\\src\\Sphere.cpp",
+  "file": "C:/Users/92972_lo8jks/Documents/GitHub/computer_graphics/computer-graphics-ray-casting-master/src/Sphere.cpp"
+},
+{
+  "directory": "C:/Users/92972_lo8jks/Documents/GitHub/computer_graphics/computer-graphics-ray-casting-master/build",
+  "command": "P:\\mingw\\mingw64\\bin\\g++.exe  @CMakeFiles/raycasting.dir/includes_CXX.rsp  -std=c++11 -g -o CMakeFiles\\raycasting.dir\\src\\Triangle.cpp.obj -c C:\\Users\\92972_lo8jks\\Documents\\GitHub\\computer_graphics\\computer-graphics-ray-casting-master\\src\\Triangle.cpp",
+  "file": "C:/Users/92972_lo8jks/Documents/GitHub/computer_graphics/computer-graphics-ray-casting-master/src/Triangle.cpp"
+},
+{
+  "directory": "C:/Users/92972_lo8jks/Documents/GitHub/computer_graphics/computer-graphics-ray-casting-master/build",
+  "command": "P:\\mingw\\mingw64\\bin\\g++.exe  @CMakeFiles/raycasting.dir/includes_CXX.rsp  -std=c++11 -g -o CMakeFiles\\raycasting.dir\\src\\TriangleSoup.cpp.obj -c C:\\Users\\92972_lo8jks\\Documents\\GitHub\\computer_graphics\\computer-graphics-ray-casting-master\\src\\TriangleSoup.cpp",
+  "file": "C:/Users/92972_lo8jks/Documents/GitHub/computer_graphics/computer-graphics-ray-casting-master/src/TriangleSoup.cpp"
+},
+{
+  "directory": "C:/Users/92972_lo8jks/Documents/GitHub/computer_graphics/computer-graphics-ray-casting-master/build",
+  "command": "P:\\mingw\\mingw64\\bin\\g++.exe  @CMakeFiles/raycasting.dir/includes_CXX.rsp  -std=c++11 -g -o CMakeFiles\\raycasting.dir\\src\\first_hit.cpp.obj -c C:\\Users\\92972_lo8jks\\Documents\\GitHub\\computer_graphics\\computer-graphics-ray-casting-master\\src\\first_hit.cpp",
+  "file": "C:/Users/92972_lo8jks/Documents/GitHub/computer_graphics/computer-graphics-ray-casting-master/src/first_hit.cpp"
+},
+{
+  "directory": "C:/Users/92972_lo8jks/Documents/GitHub/computer_graphics/computer-graphics-ray-casting-master/build",
+  "command": "P:\\mingw\\mingw64\\bin\\g++.exe  @CMakeFiles/raycasting.dir/includes_CXX.rsp  -std=c++11 -g -o CMakeFiles\\raycasting.dir\\src\\viewing_ray.cpp.obj -c C:\\Users\\92972_lo8jks\\Documents\\GitHub\\computer_graphics\\computer-graphics-ray-casting-master\\src\\viewing_ray.cpp",
+  "file": "C:/Users/92972_lo8jks/Documents/GitHub/computer_graphics/computer-graphics-ray-casting-master/src/viewing_ray.cpp"
+},
+{
+  "directory": "C:/Users/92972_lo8jks/Documents/GitHub/computer_graphics/computer-graphics-ray-casting-master/build",
+  "command": "P:\\mingw\\mingw64\\bin\\g++.exe  @CMakeFiles/raycasting.dir/includes_CXX.rsp  -std=c++11 -g -o CMakeFiles\\raycasting.dir\\src\\write_ppm.cpp.obj -c C:\\Users\\92972_lo8jks\\Documents\\GitHub\\computer_graphics\\computer-graphics-ray-casting-master\\src\\write_ppm.cpp",
+  "file": "C:/Users/92972_lo8jks/Documents/GitHub/computer_graphics/computer-graphics-ray-casting-master/src/write_ppm.cpp"
+},
+{
+  "directory": "C:/Users/92972_lo8jks/Documents/GitHub/computer_graphics/computer-graphics-ray-casting-master/build",
+  "command": "P:\\mingw\\mingw64\\bin\\g++.exe  @CMakeFiles/raycasting.dir/includes_CXX.rsp  -std=c++11 -g -o CMakeFiles\\raycasting.dir\\main.cpp.obj -c C:\\Users\\92972_lo8jks\\Documents\\GitHub\\computer_graphics\\computer-graphics-ray-casting-master\\main.cpp",
+  "file": "C:/Users/92972_lo8jks/Documents/GitHub/computer_graphics/computer-graphics-ray-casting-master/main.cpp"
+}
+]
