@@ -9,7 +9,39 @@ bool first_hit(
   Eigen::Vector3d & n)
 {
   ////////////////////////////////////////////////////////////////////////////
-  // Replace with your code here:
+  // check which object is hit, if the hit object the closest
+  bool hit = false;
+  double hit_closest_distance = std::numeric_limits<double>::infinity();
+  Eigen::Vector3d hit_closest_normal;
+  int hit_closest_id;
+
+  //output from intersect functin
+  double hit_distance;
+  Eigen::Vector3d hit_normal;
+
+  // loop throught all object to detect
+  for (int i = 0; i < objects.size(); i++){
+    //check if the current object is hit by the ray
+    if (objects[i]->intersect(ray, min_t, hit_distance, hit_normal) == true){
+      hit = true;
+      // found a closer hit point
+      if (hit_distance < hit_closest_distance){
+        //update variables
+        hit_closest_distance = hit_distance;
+        hit_closest_normal = hit_normal;
+        hit_closest_id = i;
+      }
+    }
+  }
+
+  // update output
+  if (hit){
+    hit_id = hit_closest_id;
+    t = hit_closest_distance;
+    n = hit_closest_normal;
+    return true;
+  }
+
   return false;
   ////////////////////////////////////////////////////////////////////////////
 }
