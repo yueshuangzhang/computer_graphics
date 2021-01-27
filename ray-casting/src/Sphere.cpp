@@ -51,6 +51,16 @@ bool Sphere::intersect(
       n = ((e + t*d) - c) / radius;
       n = n.normalized();
       return true;
+    }else if(t_cal_1 < t_cal_2 && t_cal_1 < min_t && t_cal_2 >= min_t){//if t1 out of bound
+      t = t_cal_2;
+      n = ((e + t*d) - c) / radius;
+      n = n.normalized();
+      return true;
+    }else if(t_cal_2 < t_cal_1 && t_cal_2 < min_t && t_cal_1 >= min_t){// if t2 out of bound
+      t = t_cal_1;
+      n = ((e + t*d) - c) / radius;
+      n = n.normalized();
+      return true;
     }
   }
 
