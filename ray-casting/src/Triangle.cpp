@@ -54,13 +54,13 @@ bool Triangle::intersect(
   double M;
   M = a*(e*i - h*f) + b*(g*f - d*i) + c*(d*h - e*g);
 
-  double beta, gamma, t_current;
+  double beta, gamma, t_cal;
   beta = (j*(e*i - h*f) + k*(g*f - d*i) + l*(d*h - e*g)) / M;
   gamma = (i*(a*k - j*b) + h*(j*c - a*l) + g*(b*l - k*c)) / M;
-  t_current = (f*(a*k - j*b) + e*(j*c - a*l) + d*(b*l - k*c)) / M;
+  t_cal = (-1) * (f*(a*k - j*b) + e*(j*c - a*l) + d*(b*l - k*c)) / M;
 
   // determine intersection
-  if(t_current < min_t){//check if t in interval
+  if(t_cal < min_t){//check if t in interval
     return false;
   }
 
@@ -70,12 +70,12 @@ bool Triangle::intersect(
   }
 
   //check beta
-  if(beta < 0 || beta > 1){
+  if(beta < 0 || beta > (1 - gamma)){
     return false;
   }
 
   // modify values
-  t = t_current;
+  t = t_cal;
   // bc cross ba 
   n = (v_c - v_b).cross(v_a - v_b);
   n = n.normalized();
