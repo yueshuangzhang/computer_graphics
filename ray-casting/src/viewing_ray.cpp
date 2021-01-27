@@ -24,5 +24,6 @@ void viewing_ray(
   // ray = e + t(u(i)u + v(j)v + -dw)
   ray.direction = u * camera.u + v * camera.v - camera.d * camera.w;
   ////////////////////////////////////////////////////////////////////////////
+  
 }
 

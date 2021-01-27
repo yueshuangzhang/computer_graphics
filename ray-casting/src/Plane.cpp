@@ -19,6 +19,8 @@ bool Plane::intersect(
   //calculate projection value
   projection = numerator/demoinator;
 
+  // min_t: minimum parametric distance to consider
+  // if proj reach limit
   if(projection >= min_t){
     t = projection;
     n = normal.normalized();
