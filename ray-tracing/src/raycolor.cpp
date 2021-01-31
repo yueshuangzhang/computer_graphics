@@ -12,8 +12,21 @@ bool raycolor(
   Eigen::Vector3d & rgb)
 {
   ////////////////////////////////////////////////////////////////////////////
-  // Replace with your code here:
   rgb = Eigen::Vector3d(0,0,0);
+
+  // check if the object hit
+  int hit_id;
+  double t;
+  Eigen::Vector3d n;
+  bool hit = first_hit(ray, min_t, objects, hit_id, t, n);
+
+  if (hit){
+
+    // get rgb
+    rgb = rgb + blinn_phong_shading(ray, hit_id, t, n, objects, lights);;
+    
+  }
+
   return false;
   ////////////////////////////////////////////////////////////////////////////
 }

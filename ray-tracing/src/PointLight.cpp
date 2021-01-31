@@ -5,8 +5,8 @@ void PointLight::direction(
 {
   ////////////////////////////////////////////////////////////////////////////
   
-  //d  3D direction from point toward light as a vector. d = pq
-  d = q - p;
+  //d  3D direction from point toward light as a vector. d = qp
+  d = p - q;
   d = d.normalized();
 
   //max_t  parametric distance from q along d to light (may be inf)
