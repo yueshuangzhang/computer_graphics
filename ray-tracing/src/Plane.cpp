@@ -1,11 +1,32 @@
 #include "Plane.h"
 #include "Ray.h"
-#include <iostream>
+
 bool Plane::intersect(
   const Ray & ray, const double min_t, double & t, Eigen::Vector3d & n) const
 {
   ////////////////////////////////////////////////////////////////////////////
-  // Replace with your code here:
+  
+  // do projecton of the ray onto the plane
+  double projection;
+  double numerator = (point - ray.origin).dot(normal);
+  double demoinator = (ray.direction).dot(normal);
+
+  //check if value valid
+  if (demoinator == 0){
+    return false;
+  }
+
+  //calculate projection value
+  projection = numerator/demoinator;
+
+  // min_t: minimum parametric distance to consider
+  // if proj reach limit
+  if(projection >= min_t){
+    t = projection;
+    n = normal.normalized();
+    return true;
+  }
+
   return false;
   ////////////////////////////////////////////////////////////////////////////
 }
