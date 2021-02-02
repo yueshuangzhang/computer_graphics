@@ -34,12 +34,12 @@ bool raycolor(
     reflect_ray.origin = ray.origin + t * ray.direction;
     reflect_ray.direction = reflect(ray.direction, n);
 
-    // get reflect rgb
+    // get reflect rgb by recursive call
     Eigen::Vector3d reflect_rgb;
     bool recursive_raycolor;
     recursive_raycolor = raycolor(reflect_ray, 1.0e-6, objects, lights, num_recursive_calls+1, reflect_rgb);
     if (recursive_raycolor){
-      rgb += (objects[hit_id]->material->km.array()*reflect_rgb.array()).matrix();
+      rgb = rgb + (objects[hit_id]->material->km.array()*reflect_rgb.array()).matrix();
     }
     return true;
   }
