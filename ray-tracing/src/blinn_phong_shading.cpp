@@ -41,21 +41,20 @@ Eigen::Vector3d blinn_phong_shading(
 
     if(!hit || hit_t >= max_t){
       
-      // Lambertian Light: k_d*I*max(0,n dot l)
+      // ============== Lambertian Light: k_d*I*max(0,n dot l) ==============
       // k_d*max(0,n dot l)
-      Eigen::Vector3d lambertian = objects[hit_id]->material->kd * (fmax(0, n.dot(l.direction)));
+      Eigen::Vector3d lambertian = (objects[hit_id]->material->kd.array() * lights[i]->I.array()).matrix() * (fmax(0, n.dot(l.direction)));
       // rgb + Lambertian
-      rgb = rgb + (lambertian.array() * lights[i]->I.array()).matrix();
+      rgb = rgb + lambertian;
 
-      // Specular Light: k_s*I*max(0,n dot h)^n  
-      Eigen::Vector3d h = (-1) * ray.direction + l.direction;
+      // ============== Specular Light: k_s*I*max(0,n dot h)^n ==============
+      Eigen::Vector3d h = (-1) * ray.direction.normalized() + l.direction.normalized();
       h = h.normalized();
       // k_s*max(0,n dot h)^n 
-      Eigen::Vector3d specular = (objects[hit_id]->material->ks) * (pow(fmax(0, n.dot(h)), objects[hit_id]->material->phong_exponent));
+      Eigen::Vector3d specular = (objects[hit_id]->material->ks.array() * lights[i]->I.array()).matrix() * (pow(fmax(0, n.dot(h)), objects[hit_id]->material->phong_exponent));
 
       // rgb + Specular 
-      rgb = rgb + (specular.array() * lights[i]->I.array()).matrix();
-
+      rgb = rgb + specular;
     }
   }
   
