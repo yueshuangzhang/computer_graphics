@@ -12,13 +12,16 @@ Eigen::Vector3d blinn_phong_shading(
   const std::vector< std::shared_ptr<Object> > & objects,
   const std::vector<std::shared_ptr<Light> > & lights)
 {
+  double ia = 0.1;
+  double epsilon = 1.0e-6;
+
   ////////////////////////////////////////////////////////////////////////////
   // hard-coded value of ia=0.1 for ambient light
   Eigen::Vector3d rgb = Eigen::Vector3d(0,0,0);
 
   // Ambient Light: k_a * I_a
   // rgb + Ambient
-  rgb = rgb + 0.1 * objects[hit_id]->material->ka;
+  rgb = rgb + ia * objects[hit_id]->material->ka;
 
   //ray from point to light (l)
   Ray l ;
@@ -34,7 +37,7 @@ Eigen::Vector3d blinn_phong_shading(
     int hit_i;
     double hit_t;
     Eigen::Vector3d hit_n;
-    bool hit = first_hit(l, 1.0e-6, objects, hit_i, hit_t, hit_n);
+    bool hit = first_hit(l, epsilon, objects, hit_i, hit_t, hit_n);
 
     if(!hit || hit_t >= max_t){
       
