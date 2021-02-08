@@ -8,48 +8,107 @@
     "height": 1,
     "width": 1
   },
+
   "materials": [
-  {
-    "name": "orange plastic",
-    "ka": [1.0, 0.7, 0.2],
-    "kd": [1.0, 0.7, 0.2],
-    "ks": [0.8,0.8,0.8],
-    "km": [0.05,0.05,0.05],
-    "phong_exponent": 1000
-  },
-  {
-    "name": "light blue",
-    "ka": [0.1, 0.1, 0.2],
-    "kd": [0.5, 0.6, 0.8],
-    "ks": [0.05,0.05,0.1],
-    "km": [0.2,0.2,0.2],
-    "phong_exponent": 20
-  }
+    {
+      "name": "white snow",
+      "ka": [0.90, 0.90, 0.90],
+      "kd": [0.95, 0.95, 0.95],
+      "ks": [0.3,0.3,0.3],
+      "km": [0.05,0.05,0.05],
+      "phong_exponent": 200
+    },
+    {
+      "name": "orange metal",
+      "ka": [1,0.49804,0],
+      "kd": [1,0.49804,0],
+      "ks": [0.2,0.2,0.2],
+      "km": [0.1,0.1,0.1],
+      "phong_exponent": 500
+    },
+    {
+      "name": "green metal",
+      "ka": [0.301961,0.686275,0.290196],
+      "kd": [0.301961,0.686275,0.290196],
+      "ks": [0.2,0.2,0.2],
+      "km": [0.1,0.1,0.1],
+      "phong_exponent": 500
+    },
+    {
+      "name": "orange plastic",
+      "ka": [1.0, 0.7, 0.2],
+      "kd": [1.0, 0.7, 0.2],
+      "ks": [0.8,0.8,0.8],
+      "km": [0.05,0.05,0.05],
+      "phong_exponent": 1000
+    },
+    {
+      "name": "teal plastic",
+      "ka": [0.2, 1, 0.7],
+      "kd": [0.2, 1, 0.7],
+      "ks": [0.8,0.8,0.8],
+      "km": [0.05,0.05,0.05],
+      "phong_exponent": 1000
+    }
   ],
   "lights":[
     {
       "type": "directional",
       "direction": [0,0,-1],
-      "color": [0.85,0.8,0.8]
+      "color": [0.8,0.8,0.8]
     },
     {
       "type": "point",
-      "position": [-5,10,10],
-      "color": [0.8,0.85,0.8]
+      "position": [-10,20,10],
+      "color": [0.8,0.8,0.8]
     }
   ],
+
   "objects": [
     {
       "type": "sphere",
-      "material": "light blue",
-      "center": [0,0,0],
-      "radius": 1
+      "material": "white snow",
+      "center": [0,-0.3,0],
+      "radius": 0.4
     },
     {
       "type": "sphere",
-      "material": "light blue",
-      "center": [0,1,0],
-      "radius": 0.65
+      "material": "white snow",
+      "center": [0,0.2,0],
+      "radius": 0.3
+    },
+    {
+      "type": "sphere",
+      "material": "teal plastic",
+      "center": [-0.15,0.2,0.25],
+      "radius": 0.02
+    },
+    {
+      "type": "sphere",
+      "material": "teal plastic",
+      "center": [0.15,0.2,0.25],
+      "radius": 0.02
+    },
+    {
+      "type": "triangle",
+      "corners": [
+        [-0.5,-0.25,0],
+        [0.5,-0.25,0],
+        [0,0.25,0]
+      ],
+      "material": "orange plastic"
+    },
+    {
+      "type": "plane",
+      "material": "green metal",
+      "point": [0,-0.7,0],
+      "normal": [0,1,0]
+    },
+    {
+      "type": "plane",
+      "material": "orange metal",
+      "point": [0,0,-1],
+      "normal": [0,0,1]
     }
   ]
 }
