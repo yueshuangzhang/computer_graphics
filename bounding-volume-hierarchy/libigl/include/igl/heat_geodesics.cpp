@@ -63,7 +63,7 @@ IGL_INLINE bool igl::heat_geodesics_precompute(
   // number of gradient components
   data.ng = data.Grad.rows() / F.rows();
   assert(data.ng == 3 || data.ng == 2);
-  data.Div = -0.25*data.Grad.transpose()*dblA.colwise().replicate(data.ng).asDiagonal();
+  data.Div = -0.25*data.Grad.transpose()*dblA.replicate(data.ng,1).asDiagonal();
 
   Eigen::SparseMatrix<Scalar> Q = M - t*L;
   Eigen::MatrixXi O;
@@ -84,11 +84,9 @@ IGL_INLINE bool igl::heat_geodesics_precompute(
         return false;
       }
     }
-    const DerivedV M_diag_tr = M.diagonal().transpose();
-    const Eigen::SparseMatrix<Scalar> Aeq = M_diag_tr.sparseView();
-    L *= -0.5;
+    const Eigen::SparseMatrix<double> Aeq = M.diagonal().transpose().sparseView();
     if(!igl::min_quad_with_fixed_precompute(
-      L,Eigen::VectorXi(),Aeq,true,data.Poisson))
+      (-L*0.5).eval(),Eigen::VectorXi(),Aeq,true,data.Poisson))
     {
       return false;
     }
@@ -119,7 +117,7 @@ IGL_INLINE void igl::heat_geodesics_solve(
     // Average Dirichelt and Neumann solutions
     DerivedD uD;
     igl::min_quad_with_fixed_solve(
-      data.Dirichlet,u0,DerivedD::Zero(data.b.size()).eval(),DerivedD(),uD);
+      data.Dirichlet,u0,DerivedD::Zero(data.b.size()),DerivedD(),uD);
     u += uD;
     u *= 0.5;
   }
@@ -127,22 +125,13 @@ IGL_INLINE void igl::heat_geodesics_solve(
   const int m = data.Grad.rows()/data.ng;
   for(int i = 0;i<m;i++)
   {
-    // It is very important to use a stable norm calculation here. If the
-    // triangle is far from a source, then the floating point values in the
-    // gradient can be _very_ small (e.g., 1e-300). The standard/naive norm
-    // calculation will suffer from underflow. Dividing by the max value is more
-    // stable. (Eigen implements this as stableNorm or blueNorm).
     Scalar norm = 0;
-    Scalar ma = 0;
-    for(int d = 0;d<data.ng;d++) {ma = std::max(ma,std::fabs(grad_u(d*m+i)));}
     for(int d = 0;d<data.ng;d++)
     {
-      const Scalar gui = grad_u(d*m+i) / ma;
-      norm += gui*gui;
+      norm += grad_u(d*m+i)*grad_u(d*m+i);
     }
-    norm = ma*sqrt(norm);
-    // These are probably over kill; ma==0 should be enough
-    if(ma == 0 || norm == 0 || norm!=norm)
+    norm = sqrt(norm);
+    if(norm == 0)
     {
       for(int d = 0;d<data.ng;d++) { grad_u(d*m+i) = 0; }
     }else
@@ -152,7 +141,7 @@ IGL_INLINE void igl::heat_geodesics_solve(
   }
   const DerivedD div_X = -data.Div*grad_u;
   const DerivedD Beq = (DerivedD(1,1)<<0).finished();
-  igl::min_quad_with_fixed_solve(data.Poisson,(-div_X).eval(),DerivedD(),Beq,D);
+  igl::min_quad_with_fixed_solve(data.Poisson,-2.0*div_X,DerivedD(),Beq,D);
   DerivedD Dgamma;
   igl::slice(D,gamma,Dgamma);
   D.array() -= Dgamma.mean();

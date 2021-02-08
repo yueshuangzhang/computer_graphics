@@ -108,7 +108,7 @@ TEST_CASE("cut_to_disk: torus", "[igl]")
   using namespace igl;
   Eigen::MatrixXd V;
   Eigen::MatrixXi F;
-  igl::read_triangle_mesh(test_common::data_path("TinyTorus.obj"), V, F);
+  test_common::load_mesh("TinyTorus.obj", V, F);
 
   std::vector<std::vector<int>> cuts;
   cut_to_disk(F, cuts);
@@ -122,7 +122,7 @@ TEST_CASE("cut_to_disk: cube", "[igl]")
   using namespace igl;
   Eigen::MatrixXd V;
   Eigen::MatrixXi F;
-  igl::read_triangle_mesh(test_common::data_path("cube.obj"), V, F);
+  test_common::load_mesh("cube.obj", V, F);
 
   std::vector<std::vector<int>> cuts;
   cut_to_disk(F, cuts);
@@ -130,17 +130,3 @@ TEST_CASE("cut_to_disk: cube", "[igl]")
 
   cut_to_disk_helper::assert_is_disk(V, F, cuts);
 }
-
-TEST_CASE("cut_to_disk: annulus", "[igl]") {
-  // Unit test for https://github.com/libigl/libigl/pull/984
-  using namespace igl;
-  Eigen::MatrixXd V;
-  Eigen::MatrixXi F;
-  igl::read_triangle_mesh(test_common::data_path("annulus.obj"), V, F);
-
-  std::vector<std::vector<int>> cuts;
-  cut_to_disk(F, cuts);
-
-  cut_to_disk_helper::assert_is_disk(V, F, cuts);
-}
-

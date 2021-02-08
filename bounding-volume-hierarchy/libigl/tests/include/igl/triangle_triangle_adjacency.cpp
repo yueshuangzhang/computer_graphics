@@ -3,14 +3,15 @@
 #include <igl/triangle_triangle_adjacency.h>
 #include <Eigen/Geometry>
 
-TEST_CASE("triangle_triangle_adjacency: dot", "[igl]" "[slow]")
+
+TEST_CASE("triangle_triangle_adjacency: dot", "[igl]")
 {
   const auto test_case = [](const std::string &param)
   {
     Eigen::MatrixXd V;
     Eigen::MatrixXi F,TT,TTi;
     // Load example mesh: GetParam() will be name of mesh file
-    igl::read_triangle_mesh(test_common::data_path(param), V, F);
+    test_common::load_mesh(param, V, F);
     igl::triangle_triangle_adjacency(F,TT,TTi);
     REQUIRE (TT.rows() == F.rows());
     REQUIRE (TTi.rows() == F.rows());

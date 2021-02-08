@@ -1,5 +1,4 @@
 #include <test_common.h>
-#include <igl/PI.h>
 #include <igl/cotmatrix_entries.h>
 #include <igl/edge_lengths.h>
 #include <igl/EPS.h>
@@ -12,7 +11,7 @@ TEST_CASE("cotmatrix_entries: simple", "[igl]")
   Eigen::MatrixXd V;
   Eigen::MatrixXi F;
   //This is a cube of dimensions 1.0x1.0x1.0
-  igl::read_triangle_mesh(test_common::data_path("cube.obj"), V, F);
+  test_common::load_mesh("cube.obj", V, F);
 
   //Prepare another mesh with triangles along side diagonals of the cube
   //These triangles are form a regular tetrahedron of side sqrt(2)
@@ -60,9 +59,9 @@ TEST_CASE("cotmatrix_entries: simple", "[igl]")
   REQUIRE (C2.cols() == 3);
   for(int f = 0;f<C2.rows();f++)
   {
-    //Their (half)cotangent must value 0.5 / tan(igl::PI / 3.0)
+    //Their (half)cotangent must value 0.5 / tan(M_PI / 3.0)
     for(int v = 0;v<3;v++)
-       REQUIRE (C2(f,v) == Approx (0.5 / tan(igl::PI / 3.0)).margin( epsilon));
+       REQUIRE (C2(f,v) == Approx (0.5 / tan(M_PI / 3.0)).margin( epsilon));
   }
 
   //Scale the cube to have huge sides
@@ -102,9 +101,9 @@ TEST_CASE("cotmatrix_entries: simple", "[igl]")
   REQUIRE (C2.cols() == 3);
   for(int f = 0;f<C2.rows();f++)
   {
-    //Their (half)cotangent must value 0.5 / tan(igl::PI / 3.0)
+    //Their (half)cotangent must value 0.5 / tan(M_PI / 3.0)
     for(int v = 0;v<3;v++)
-       REQUIRE (C2(f,v) == Approx (0.5 / tan(igl::PI / 3.0)).margin( epsilon));
+       REQUIRE (C2(f,v) == Approx (0.5 / tan(M_PI / 3.0)).margin( epsilon));
   }
 
   //Scale the cube to have tiny sides
@@ -131,9 +130,9 @@ TEST_CASE("cotmatrix_entries: simple", "[igl]")
   REQUIRE (C2.cols() == 3);
   for(int f = 0;f<C2.rows();f++)
   {
-    //Their (half)cotangent must value 0.5 / tan(igl::PI / 3.0)
+    //Their (half)cotangent must value 0.5 / tan(M_PI / 3.0)
     for(int v = 0;v<3;v++)
-       REQUIRE (C2(f,v) == Approx (0.5 / tan(igl::PI / 3.0)).margin( epsilon));
+       REQUIRE (C2(f,v) == Approx (0.5 / tan(M_PI / 3.0)).margin( epsilon));
   }
 }// TEST_CASE("cotmatrix_entries: simple", "[igl]")
 
@@ -142,7 +141,7 @@ TEST_CASE("cotmatrix_entries: intrinsic", "[igl]")
   Eigen::MatrixXd V;
   Eigen::MatrixXi F;
   //This is a cube of dimensions 1.0x1.0x1.0
-  igl::read_triangle_mesh(test_common::data_path("cube.obj"), V, F);
+  test_common::load_mesh("cube.obj", V, F);
   Eigen::MatrixXd Cext,Cint;
   // compute C extrinsically
   igl::cotmatrix_entries(V,F,Cext);

@@ -12,10 +12,9 @@
 #include <CGAL/Exact_predicates_exact_constructions_kernel.h>
 
 TEST_CASE("copyleft_cgal_peel_outer_hull_layers: TwoCubes", "[igl/copyleft/cgal]")
-{
     Eigen::MatrixXd V;
     Eigen::MatrixXi F;
-    igl::read_triangle_mesh(test_common::data_path("two-boxes-bad-self-union.ply"), V, F);
+    test_common::load_mesh("two-boxes-bad-self-union.ply", V, F);
     REQUIRE (V.rows() == 486);
     REQUIRE (F.rows() == 708);
 
@@ -52,10 +51,9 @@ TEST_CASE("copyleft_cgal_peel_outer_hull_layers: TwoCubes", "[igl/copyleft/cgal]
 }
 
 TEST_CASE("PeelOuterHullLayers: CubeWithFold", "[igl/copyleft/cgal]")
-{
     Eigen::Matrix<double, Eigen::Dynamic, Eigen::Dynamic, Eigen::RowMajor> V;
     Eigen::MatrixXi F;
-    igl::read_triangle_mesh(test_common::data_path("cube_with_fold.ply"), V, F);
+    test_common::load_mesh("cube_with_fold.ply", V, F);
 
     typedef CGAL::Exact_predicates_exact_constructions_kernel K;
     typedef K::FT Scalar;

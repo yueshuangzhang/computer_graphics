@@ -16,12 +16,10 @@ namespace igl
   // `igl::marching_cubes`
   //
   // Inputs:
-  //   res  #res list of number of vertices along each dimension filling a unit
-  //     #res-cube
+  //   res  #res list of number of vertices along each dimension
   // Outputs:
   //   GV  res.array().prod() by #res list of mesh vertex positions.
   //   
-  //   See also: triangulated_grid, quad_grid
   template <
     typename Derivedres,
     typename DerivedGV>

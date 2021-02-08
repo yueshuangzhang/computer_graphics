@@ -51,7 +51,8 @@ IGL_INLINE void igl::edge_flaps(
   Eigen::MatrixXi & EI)
 {
   Eigen::MatrixXi allE;
-  igl::unique_edge_map(F,allE,uE,EMAP);
+  std::vector<std::vector<int> > uE2E;
+  igl::unique_edge_map(F,allE,uE,EMAP,uE2E);
   // Const-ify to call overload
   const auto & cuE = uE;
   const auto & cEMAP = EMAP;

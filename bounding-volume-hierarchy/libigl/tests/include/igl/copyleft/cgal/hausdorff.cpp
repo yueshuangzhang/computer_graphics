@@ -9,13 +9,13 @@ TEST_CASE("hausdorff: knightVScheburashka", "[igl/copyleft/cgal]")
 {
   Eigen::MatrixXd VA,VB;
   Eigen::MatrixXi FA,FB;
-  igl::read_triangle_mesh(test_common::data_path("decimated-knight.obj"), VA, FA);
-  igl::read_triangle_mesh(test_common::data_path("cheburashka.off"), VB, FB);
+  test_common::load_mesh("decimated-knight.obj", VA, FA);
+  test_common::load_mesh("cheburashka.off", VB, FB);
   //typedef CGAL::Epeck Kernel;
   typedef CGAL::Simple_cartesian<double> Kernel;
   CGAL::AABB_tree<
-    CGAL::AABB_traits<Kernel,
-      CGAL::AABB_triangle_primitive<Kernel,
+    CGAL::AABB_traits<Kernel, 
+      CGAL::AABB_triangle_primitive<Kernel, 
         typename std::vector<CGAL::Triangle_3<Kernel> >::iterator
       >
     >
@@ -52,3 +52,4 @@ TEST_CASE("hausdorff: knightVScheburashka", "[igl/copyleft/cgal]")
     break;
   }
 }
+

@@ -1,34 +1,8 @@
 #include <test_common.h>
-#include <igl/PI.h>
 #include <igl/cotmatrix.h>
-#include <igl/matrix_to_list.h>
-#include <igl/polygon_corners.h>
 
-TEST_CASE("cotmatrix: poly", "[igl]" )
-{
-  const auto test_case = [](const std::string &param)
-  {
-    Eigen::MatrixXd V;
-    Eigen::MatrixXi F;
-    // Load example mesh: GetParam() will be name of mesh file
-    igl::read_triangle_mesh(test_common::data_path(param), V, F);
-    Eigen::SparseMatrix<double> tL,pL,pM,pP;
-    igl::cotmatrix(V,F,tL);
-    std::vector<std::vector<int> > vF;
-    igl::matrix_to_list(F,vF);
-    // trivial polygon mesh
-    Eigen::VectorXi I,C;
-    igl::polygon_corners(vF,I,C);
-    igl::cotmatrix(V,I,C,pL,pM,pP);
-    REQUIRE (tL.cols() == pL.cols());
-    REQUIRE (tL.rows() == pL.rows());
-    REQUIRE ( tL.isApprox(pL,1e-7) );
-  };
 
-  test_common::run_test_cases(test_common::all_meshes(), test_case);
-}
-
-TEST_CASE("cotmatrix: constant_in_null_space", "[igl]" "[slow]")
+TEST_CASE("cotmatrix: constant_in_null_space", "[igl]")
 {
   const auto test_case = [](const std::string &param)
   {
@@ -36,7 +10,7 @@ TEST_CASE("cotmatrix: constant_in_null_space", "[igl]" "[slow]")
     Eigen::MatrixXi F;
     Eigen::SparseMatrix<double> L;
     // Load example mesh: GetParam() will be name of mesh file
-    igl::read_triangle_mesh(test_common::data_path(param), V, F);
+    test_common::load_mesh(param, V, F);
     igl::cotmatrix(V,F,L);
     REQUIRE (L.rows() == V.rows());
     REQUIRE (L.cols() == L.rows());
@@ -59,7 +33,7 @@ TEST_CASE("cotmatrix: cube", "[igl]")
   Eigen::MatrixXd V;
   Eigen::MatrixXi F;
   //This is a cube of dimensions 1.0x1.0x1.0
-  igl::read_triangle_mesh(test_common::data_path("cube.obj"), V, F);
+  test_common::load_mesh("cube.obj", V, F);
 
   //Scale the cube to have huge sides
   Eigen::MatrixXd V_huge = V * 1.0e8;
@@ -76,33 +50,21 @@ TEST_CASE("cotmatrix: cube", "[igl]")
   igl::cotmatrix(V,F,L1);
   REQUIRE (L1.rows() == V.rows());
   REQUIRE (L1.cols() == V.rows());
-//// This is hitting an Eigen bug.  https://github.com/libigl/libigl/pull/1064
-//  for(int f = 0;f<L1.rows();f++)
-//  {
-//#ifdef IGL_EDGE_LENGTHS_SQUARED_H
-//    //Hard assert if we have edge_lenght_squared
-//    REQUIRE (L1.coeff(f,f) == -3.0);
-//    REQUIRE (L1.row(f).sum() == 0.0);
-//    REQUIRE (L1.col(f).sum() == 0.0);
-//#else
-//    //Soft assert if we have not edge_lenght_squared
-//    REQUIRE (L1.coeff(f,f) == Approx (-3.0).margin( epsilon));
-//    REQUIRE (L1.row(f).sum() == Approx (0.0).margin( epsilon));
-//    REQUIRE (L1.col(f).sum() == Approx (0.0).margin( epsilon));
-//#endif
-//  }
-  Eigen::VectorXd row_sum = L1 * Eigen::VectorXd::Constant(L1.rows(),1,1);
-  Eigen::RowVectorXd col_sum = Eigen::RowVectorXd::Constant(1,L1.rows(),1) * L1;
-  Eigen::VectorXd diag = L1.diagonal();
+  for(int f = 0;f<L1.rows();f++)
+  {
 #ifdef IGL_EDGE_LENGTHS_SQUARED_H
-  test_common::assert_eq( row_sum, Eigen::VectorXd::Zero(L1.rows()) );
-  test_common::assert_eq( col_sum, Eigen::RowVectorXd::Zero(L1.rows()) );
-  test_common::assert_eq(    diag, Eigen::VectorXd::Constant(L1.rows(),1,-3) );
+    //Hard assert if we have edge_lenght_squared
+    REQUIRE (L1.coeff(f,f) == -3.0);
+    REQUIRE (L1.row(f).sum() == 0.0);
+    REQUIRE (L1.col(f).sum() == 0.0);
 #else
-  test_common::assert_near( row_sum, Eigen::VectorXd::Zero(L1.rows()) , epsilon);
-  test_common::assert_near( col_sum, Eigen::RowVectorXd::Zero(L1.rows()) , epsilon);
-  test_common::assert_near(    diag, Eigen::VectorXd::Constant(L1.rows(),1,-3) , epsilon);
+    //Soft assert if we have not edge_lenght_squared
+    REQUIRE (L1.coeff(f,f) == Approx (-3.0).margin( epsilon));
+    REQUIRE (L1.row(f).sum() == Approx (0.0).margin( epsilon));
+    REQUIRE (L1.col(f).sum() == Approx (0.0).margin( epsilon));
 #endif
+
+  }
 
   //Same for huge cube.
   igl::cotmatrix(V_huge,F,L1);
@@ -135,7 +97,7 @@ TEST_CASE("cotmatrix: tetrahedron", "[igl]")
   Eigen::MatrixXd V;
   Eigen::MatrixXi F;
   //This is a cube of dimensions 1.0x1.0x1.0
-  igl::read_triangle_mesh(test_common::data_path("cube.obj"), V, F);
+  test_common::load_mesh("cube.obj", V, F);
 
   //Prepare another mesh with triangles along side diagonals of the cube
   //These triangles are form a regular tetrahedron of side sqrt(2)
@@ -167,7 +129,7 @@ TEST_CASE("cotmatrix: tetrahedron", "[igl]")
   {
     //Check the diagonal. Only can value 0.0 for unused vertex or -3 / tan(60)
     if (L1.coeff(f,f) < -0.1)
-        REQUIRE (L1.coeff(f,f) == Approx (-3 / tan(igl::PI / 3.0)).margin( epsilon));
+        REQUIRE (L1.coeff(f,f) == Approx (-3 / tan(M_PI / 3.0)).margin( epsilon));
     else
         REQUIRE (L1.coeff(f,f) == Approx (0.0).margin( epsilon));
 #ifdef IGL_EDGE_LENGTHS_SQUARED_H
@@ -190,7 +152,7 @@ TEST_CASE("cotmatrix: tetrahedron", "[igl]")
   {
     //Check the diagonal. Only can value 0.0 for unused vertex or -3 / tan(60)
     if (L1.coeff(f,f) < -0.1)
-        REQUIRE (L1.coeff(f,f) == Approx (-3 / tan(igl::PI / 3.0)).margin( epsilon));
+        REQUIRE (L1.coeff(f,f) == Approx (-3 / tan(M_PI / 3.0)).margin( epsilon));
     else
         REQUIRE (L1.coeff(f,f) == Approx (0.0).margin( epsilon));
     REQUIRE (L1.row(f).sum() == Approx (0.0).margin( epsilon));
@@ -206,7 +168,7 @@ TEST_CASE("cotmatrix: tetrahedron", "[igl]")
   {
     //Check the diagonal. Only can value 0.0 for unused vertex or -3 / tan(60)
     if (L1.coeff(f,f) < -0.1)
-        REQUIRE (L1.coeff(f,f) == Approx (-3 / tan(igl::PI / 3.0)).margin( epsilon));
+        REQUIRE (L1.coeff(f,f) == Approx (-3 / tan(M_PI / 3.0)).margin( epsilon));
     else
         REQUIRE (L1.coeff(f,f) == Approx (0.0).margin( epsilon));
     REQUIRE (L1.row(f).sum() == Approx (0.0).margin( epsilon));

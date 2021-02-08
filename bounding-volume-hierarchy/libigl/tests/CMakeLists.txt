@@ -27,22 +27,11 @@ add_subdirectory(${LIBIGL_EXTERNAL}/catch2 catch2)
 add_executable(libigl_tests main.cpp test_common.h)
 target_link_libraries(libigl_tests PUBLIC igl::core Catch2::Catch2)
 target_include_directories(libigl_tests PUBLIC ${CMAKE_CURRENT_LIST_DIR})
-target_compile_definitions(libigl_tests PUBLIC CATCH_CONFIG_ENABLE_BENCHMARKING)
 
 # Set DATA_DIR definition
 set(DATA_DIR "${CMAKE_CURRENT_SOURCE_DIR}/data/")
 target_compile_definitions(libigl_tests PUBLIC -DLIBIGL_DATA_DIR="${IGL_TEST_DATA}")
 
-# Silencing some compile warnings
-if(MSVC)
-  target_compile_options(libigl_tests PRIVATE
-    # Type conversion warnings. These can be fixed with some effort and possibly more verbose code.
-    /wd4267 # conversion from 'size_t' to 'type', possible loss of data
-    /wd4244 # conversion from 'type1' to 'type2', possible loss of data
-    /wd4018 # signed/unsigned mismatch
-    /wd4305 # truncation from 'double' to 'float'
-  )
-endif(MSVC)
 
 # Process code in each subdirectories: add in decreasing order of complexity
 # (last added will run first and those should be the fastest tests)
@@ -52,11 +41,6 @@ if(LIBIGL_WITH_MOSEK)
   target_sources(libigl_tests PRIVATE ${TEST_SRC_FILES} ${TEST_INC_FILES})
 
   target_link_libraries(libigl_tests PUBLIC igl::mosek)
-  # fix mosek
-  IF(APPLE)
-    INCLUDE(../cmake/OSXFixDylibReferences.cmake)
-    OSX_FIX_DYLIB_REFERENCES(libigl_tests "${MOSEK_LIBRARIES}")
-  ENDIF()
 endif()
 
 if(LIBIGL_WITH_CGAL)
@@ -65,7 +49,6 @@ if(LIBIGL_WITH_CGAL)
   target_sources(libigl_tests PRIVATE ${TEST_SRC_FILES} ${TEST_INC_FILES})
 
   target_link_libraries(libigl_tests PUBLIC igl::cgal)
-  igl_copy_cgal_dll(libigl_tests)
 endif()
 
 if(LIBIGL_WITH_TETGEN)
@@ -90,22 +73,6 @@ if(LIBIGL_WITH_EMBREE)
   target_sources(libigl_tests PRIVATE ${TEST_SRC_FILES} ${TEST_INC_FILES})
 
   target_link_libraries(libigl_tests PUBLIC igl::embree)
-endif()
-
-if(LIBIGL_WITH_PREDICATES AND LIBIGL_WITH_TRIANGLE)
-  file(GLOB TEST_SRC_FILES ./include/igl/predicates/*.cpp)
-  file(GLOB TEST_INC_FILES ./include/igl/predicates/*.h ./include/igl/predicates/*.inl)
-  target_sources(libigl_tests PRIVATE ${TEST_SRC_FILES} ${TEST_INC_FILES})
-
-  target_link_libraries(libigl_tests PUBLIC igl::predicates igl::triangle)
-endif()
-
-if(LIBIGL_WITH_TRIANGLE)
-  file(GLOB TEST_SRC_FILES ./include/igl/triangle/*.cpp)
-  file(GLOB TEST_INC_FILES ./include/igl/triangle/*.h ./include/igl/triangle/*.inl)
-  target_sources(libigl_tests PRIVATE ${TEST_SRC_FILES} ${TEST_INC_FILES})
-
-  target_link_libraries(libigl_tests PUBLIC igl::triangle)
 endif()
 
 file(GLOB TEST_SRC_FILES ./include/igl/*.cpp)

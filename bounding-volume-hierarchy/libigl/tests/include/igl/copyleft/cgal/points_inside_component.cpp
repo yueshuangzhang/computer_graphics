@@ -3,11 +3,12 @@
 #include <igl/copyleft/cgal/points_inside_component.h>
 #include <limits>
 
+namespace PointInsideComponentHelper {
+
 TEST_CASE("PointInsideComponent: simple", "[igl/copyleft/cgal]")
-{
     Eigen::MatrixXd V1;
     Eigen::MatrixXi F1;
-    igl::read_triangle_mesh(test_common::data_path("cube.obj"), V1, F1);
+    test_common::load_mesh("cube.obj", V1, F1);
 
     Eigen::MatrixXd P(4, 3);
     P << 0.0, 0.0, 0.0,
@@ -24,10 +25,9 @@ TEST_CASE("PointInsideComponent: simple", "[igl/copyleft/cgal]")
 }
 
 TEST_CASE("PointInsideComponent: near_boundary", "[igl/copyleft/cgal]")
-{
     Eigen::MatrixXd V1;
     Eigen::MatrixXi F1;
-    igl::read_triangle_mesh(test_common::data_path("cube.obj"), V1, F1);
+    test_common::load_mesh("cube.obj", V1, F1);
 
     const double EPS = std::numeric_limits<double>::epsilon();
     Eigen::MatrixXd P(6, 3);
@@ -49,10 +49,9 @@ TEST_CASE("PointInsideComponent: near_boundary", "[igl/copyleft/cgal]")
 }
 
 TEST_CASE("PointInsideComponent: near_corner", "[igl/copyleft/cgal]")
-{
     Eigen::MatrixXd V1;
     Eigen::MatrixXi F1;
-    igl::read_triangle_mesh(test_common::data_path("cube.obj"), V1, F1);
+    test_common::load_mesh("cube.obj", V1, F1);
 
     const double EPS = std::numeric_limits<double>::epsilon();
     Eigen::MatrixXd P_out(8, 3);
@@ -80,4 +79,6 @@ TEST_CASE("PointInsideComponent: near_corner", "[igl/copyleft/cgal]")
            -0.5 + EPS,-0.5 + EPS,-0.5 + EPS;
     CHECK_NOTHROW (igl::copyleft::cgal::points_inside_component(V1, F1, P_in, inside));
     REQUIRE ((inside.array()==1).all());
+}
+
 }

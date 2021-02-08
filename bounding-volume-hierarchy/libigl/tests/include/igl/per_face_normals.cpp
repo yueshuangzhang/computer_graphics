@@ -3,14 +3,14 @@
 #include <igl/per_face_normals.h>
 #include <Eigen/Geometry>
 
-TEST_CASE("per_face_normals: dot", "[igl]" "[slow]")
+TEST_CASE("per_face_normals: dot", "[igl]")
 {
   const auto test_case = [](const std::string &param)
   {
 	  Eigen::MatrixXd V,N;
 	  Eigen::MatrixXi F;
 	  // Load example mesh: GetParam() will be name of mesh file
-	  igl::read_triangle_mesh(test_common::data_path(param), V, F);
+	  test_common::load_mesh(param, V, F);
 	  igl::per_face_normals(V,F,N);
 	  REQUIRE (N.rows() == F.rows());
 	  for(int f = 0;f<N.rows();f++)

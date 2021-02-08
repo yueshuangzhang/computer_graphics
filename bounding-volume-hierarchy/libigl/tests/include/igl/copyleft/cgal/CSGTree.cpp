@@ -2,10 +2,10 @@
 
 #include <igl/copyleft/cgal/CSGTree.h>
 
-TEST_CASE("CSGTree: extrusion", "[igl/copyleft/cgal]") {
+TEST_CASE("CSGTree: extrusion", "[igl/copyleft/cgal]")
     Eigen::MatrixXd V;
     Eigen::MatrixXi F;
-    igl::read_triangle_mesh(test_common::data_path("extrusion.obj"), V, F);
+    test_common::load_mesh("extrusion.obj", V, F);
     igl::copyleft::cgal::CSGTree tree(V, F);
     igl::copyleft::cgal::CSGTree inter(tree, tree, "i"); // returns error
 
