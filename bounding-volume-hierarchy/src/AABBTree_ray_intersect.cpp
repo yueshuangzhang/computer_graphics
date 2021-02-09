@@ -9,8 +9,14 @@ bool AABBTree::ray_intersect(
   std::shared_ptr<Object> & descendant) const 
 {
   ////////////////////////////////////////////////////////////////////////////
-  // Replace with your code here:
-  t = 0;
+
+  // get the e & d vector
+  Eigen::Vector3d e = ray.origin;
+  Eigen::Vector3d d = ray.direction;
+
+  // define empty variable to hold 
+
+
   return false;
   ////////////////////////////////////////////////////////////////////////////
 }
