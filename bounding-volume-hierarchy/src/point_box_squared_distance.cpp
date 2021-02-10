@@ -24,5 +24,7 @@ double point_box_squared_distance(
     //sum up the distance
     sq_d = pow(distance,2);
   }
+
+  return sq_d;
   ////////////////////////////////////////////////////////////////////////////
 }

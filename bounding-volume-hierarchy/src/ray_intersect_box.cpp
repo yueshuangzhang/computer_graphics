@@ -30,68 +30,54 @@ bool ray_intersect_box(
   y_d = ray.direction[1];
   z_d = ray.direction[2];
 
+  double alpha_x, alpha_y, alpha_z; 
+  alpha_x = 1 / x_d;
+  alpha_y = 1 / y_d;
+  alpha_z = 1 / z_d;
+
   // define variable to hold return values
   double txmin, txmax, tymin, tymax, tzmin, tzmax;
 
   // if the x_d or y_d or z_d is negative, then the ray will hit x_max before x_min
-  double p_inf = std::numeric_limits<double>::infinity();
-  double n_inf = (-1)*std::numeric_limits<double>::infinity();
 
-  if (x_d == 0) {
-    if (x_min - x_e > 0)  return false;
-    else txmin = n_inf;
-    if (x_max - x_e < 0)  return false;
-    else txmax = p_inf;
-  }
-  else if (x_d > 0) {
-    txmin = (x_min - x_e) / x_d;
-    txmax = (x_max - x_e) / x_d;
+  if (x_d >= 0) {
+    txmin = alpha_x * (x_min - x_e);
+    txmax = alpha_x * (x_max - x_e);
   } 
   else {
-    txmin = (x_max - x_e) / x_d;
-    txmax = (x_min - x_e) / x_d;
+    txmin = alpha_x * (x_max - x_e);
+    txmax = alpha_x * (x_min - x_e);
   }
 
-  if (y_d == 0) {
-    if (y_min - y_e > 0)  return false;
-    else tymin = n_inf;
-    if (y_max - y_e < 0)  return false;
-    else tymax = p_inf;
-  }
-  else if (y_d > 0) {
-    tymin = (y_min - y_e) / y_d;
-    tymax = (y_max - y_e) / y_d;
+  if (y_d >= 0) {
+    tymin = alpha_y * (y_min - y_e);
+    tymax = alpha_y * (y_max - y_e);
   }
   else {
-    tymin = (y_max - y_e) / y_d;
-    tymax = (y_min - y_e) / y_d;
+    tymin = alpha_y * (y_max - y_e);
+    tymax = alpha_y * (y_min - y_e);
   }
 
-  if (z_d == 0) {
-    if (z_min - z_e > 0)  return false;
-    else tzmin = n_inf;
-    if (z_max - z_e < 0)  return false;
-    else tzmax = p_inf;
-  }
-  else if (z_d > 0) {
-    tzmin = (z_min - z_e) / z_d;
-    tzmax = (z_max - z_e) / z_d;
+  if (z_d >= 0) {
+    tzmin = alpha_z * (z_min - z_e);
+    tzmax = alpha_z * (z_max - z_e);
   }
   else {
-    tzmin = (z_max - z_e) / z_d;
-    tzmax = (z_min - z_e) / z_d;
+    tzmin = alpha_z * (z_max - z_e);
+    tzmax = alpha_z * (z_min - z_e);
   }
 
   // find the interval
-  double max_t_min, min_t_max;
+  double max_t_min, min_t_max, min_max, max_min;
   max_t_min = fmax(fmax(txmin, tymin), tzmin);
   min_t_max = fmin(fmin(txmax, tymax), tzmax);
-
+  min_max = fmin(max_t, min_t_max);
+  max_min = fmax(min_t, max_t_min);
   // must hit
   if (min_t_max < max_t_min) {
     return false;
   }
-  else if (min_t_max < max_t || max_t_min > min_t) {
+  else if (min_max < max_min) {
     return false;
   }
   else{

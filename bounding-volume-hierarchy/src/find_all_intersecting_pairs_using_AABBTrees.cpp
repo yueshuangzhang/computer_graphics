@@ -9,75 +9,46 @@ void find_all_intersecting_pairs_using_AABBTrees(
   std::vector<std::pair<std::shared_ptr<Object>,std::shared_ptr<Object> > > & 
     leaf_pairs)
 {
-  ////////////////////////////////////////////////////////////////////////////
-  // make sure
-  if (leaf_pairs.size() > 0){
-    leaf_pairs.clear();
-  }
-
-  std::list<std::pair<std::shared_ptr<Object>, std::shared_ptr<Object> >> queue;
-  std::pair<std::shared_ptr<Object>, std::shared_ptr<Object>> node_pair;
-  std::shared_ptr<Object> node_A, node_B;
-  std::shared_ptr<AABBTree> tree_A, tree_B;
-  if (box_box_intersect(rootA->box, rootB->box)){
-    queue.push_back(std::make_pair(rootA, rootB));
-  }else{
-    return;
-  }
+  /*
+   * Algorithm based on pseudocode provided on the lab handout
+   */
+  leaf_pairs.clear(); // Empty the return vector
+  if (!box_box_intersect(rootA->box, rootB->box))
+    return; // roots dont intersect so nothing intersects
+  std::list<std::pair<std::shared_ptr<Object>, std::shared_ptr<Object>>> queue; // Queue of intersecting pairs
+  queue.push_back(std::make_pair(rootA, rootB));
 
   while (!queue.empty()) {
-    // triverse from the end of the tree
-    // get the 2 tree node
-    node_pair = queue.front();
+    auto nodes = queue.front();
     queue.pop_front();
-    node_A = node_pair.first;
-    node_B = node_pair.second;
-    
-    tree_A = std::dynamic_pointer_cast<AABBTree>(node_A);
-    tree_B = std::dynamic_pointer_cast<AABBTree>(node_B);
+    std::shared_ptr<AABBTree> nodeA = std::dynamic_pointer_cast<AABBTree>(nodes.first);
+    std::shared_ptr<AABBTree> nodeB = std::dynamic_pointer_cast<AABBTree>(nodes.second);
 
-    // both tree_A and tree_B are leaves
-    if ((tree_A == NULL) && (tree_B == NULL)){
-      leaf_pairs.push_back(std::make_pair(node_A, node_B));
-    }
-    //only A is leave
-    else if (tree_A == NULL){
-      if (box_box_intersect(node_A->box, tree_B->left->box)){
-        queue.push_back(std::make_pair(node_A, tree_B->left));
-      }
-      if (box_box_intersect(node_A->box, tree_B->right->box)){
-        queue.push_back(std::make_pair(node_A, tree_B->right));
-      }
-    }
-    //only B is leave
-    else if (tree_B == NULL){
-      if (box_box_intersect(tree_A->left->box, node_B->box)){
-        queue.push_back(std::make_pair(tree_A->left, node_B));
-      }
-      if (box_box_intersect(tree_A->right->box, node_B->box)){
-        queue.push_back(std::make_pair(tree_A->right, node_B));
-      }
-    }
-    //either is leaves
-    else{
-      //if tree a left intersect with tree b left
-      if(box_box_intersect(tree_A->left->box, tree_B->left->box)){
-          queue.push_back(std::make_pair(tree_A->left, tree_B->left));
-      }
-      //if tree a left intersect with tree b left
-      if(box_box_intersect(tree_A->left->box, tree_B->right->box)){
-          queue.push_back(std::make_pair(tree_A->left, tree_B->right));
-      }
-      //if tree a left intersect with tree b left
-      if(box_box_intersect(tree_A->right->box, tree_B->right->box)){
-          queue.push_back(std::make_pair(tree_A->right, tree_B->right));
-      }
-      //if tree a left intersect with tree b left
-      if(box_box_intersect(tree_A->right->box, tree_B->left->box)){
-          queue.push_back(std::make_pair(tree_A->right, tree_B->left));
-      }
+    if (!nodeA && !nodeB) {
+      // Both nodes are leaves so they are an intersecting leaf pair
+      leaf_pairs.push_back(std::make_pair(nodes.first, nodes.second));
+    } else if (!nodeA) {
+      // Node A is a leaf but node B is not.
+      if (nodeB->left && box_box_intersect(nodes.first->box, nodeB->left->box))
+        queue.push_back(std::make_pair(nodes.first, nodeB->left));
+      if (nodeB->right && box_box_intersect(nodes.first->box, nodeB->right->box))
+        queue.push_back(std::make_pair(nodes.first, nodeB->right));
+    } else if (!nodeB) {
+      // Node B is a leaf but node A is not
+      if (nodeA->left && box_box_intersect(nodes.second->box, nodeA->left->box))
+        queue.push_back(std::make_pair(nodeA->left, nodes.second));
+      if (nodeA->right && box_box_intersect(nodes.second->box, nodeA->right->box))
+        queue.push_back(std::make_pair(nodeA->right, nodes.second));
+    } else {
+      // Neither nodes are leaves
+      if (nodeA->left && nodeB->left && box_box_intersect(nodeA->left->box, nodeB->left->box))
+        queue.push_back(std::make_pair(nodeA->left, nodeB->left));
+      if (nodeA->left && nodeB->right && box_box_intersect(nodeA->left->box, nodeB->right->box))
+        queue.push_back(std::make_pair(nodeA->left, nodeB->right));
+      if (nodeA->right && nodeB->left && box_box_intersect(nodeA->right->box, nodeB->left->box))
+        queue.push_back(std::make_pair(nodeA->right, nodeB->left));
+      if (nodeA->right && nodeB->right && box_box_intersect(nodeA->right->box, nodeB->right->box))
+        queue.push_back(std::make_pair(nodeA->right, nodeB->right));
     }
   }
-
-  ////////////////////////////////////////////////////////////////////////////
 }

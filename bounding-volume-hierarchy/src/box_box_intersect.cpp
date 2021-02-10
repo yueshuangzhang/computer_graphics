@@ -3,15 +3,12 @@ bool box_box_intersect(
   const BoundingBox & A,
   const BoundingBox & B)
 {
-  ////////////////////////////////////////////////////////////////////////////
-
-  for (int i = 0; i < 3; i++) {
-    //in x, y, z axis, if any of the corner dont intersect, then the case fails
+  for (int i=0; i<3; ++i) {
     if (A.min_corner[i] > B.max_corner[i] || B.min_corner[i] > A.max_corner[i])
-      return false;
+      return false; // Boxes dont intersect because it doesn't intersect on the current axis i.
   }
 
-  return false;
-  ////////////////////////////////////////////////////////////////////////////
+  // Boxes intersect on all axes.
+  return true;
 }
 

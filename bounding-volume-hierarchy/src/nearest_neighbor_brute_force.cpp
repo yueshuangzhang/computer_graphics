@@ -7,9 +7,19 @@ void nearest_neighbor_brute_force(
   int & I,
   double & sqrD)
 {
-  ////////////////////////////////////////////////////////////////////////////
-  // Replace with your code here:
+  // initialize value
   I = -1;
-  sqrD = 0;
-  ////////////////////////////////////////////////////////////////////////////
+  sqrD = std::numeric_limits<double>::infinity();
+
+  // find and replace the value
+  for (int i = 0; i < points.rows(); i++) {
+    //calculate the distance between point & query
+    double distance = (points.row(i) - query).squaredNorm();
+    if (distance < sqrD) {
+      // if a closer neighbour is found:
+      // update value
+      sqrD = distance;
+      I = i;
+    }
+  }
 }

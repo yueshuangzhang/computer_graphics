@@ -9,12 +9,14 @@ bool AABBTree::ray_intersect(
   std::shared_ptr<Object> & descendant) const 
 {
   ////////////////////////////////////////////////////////////////////////////
-
+  // algo provide in slide
   if (ray_intersect_box(ray, this->box, min_t, max_t)){
 
     // store return value
     double left_t, right_t;
     std::shared_ptr<Object> left_tree, right_tree;
+    left_tree = this->left;
+    right_tree = this->right;
 
     bool left_hit, right_hit;
 
@@ -24,26 +26,34 @@ bool AABBTree::ray_intersect(
 
     // hit both, take min t
     if (left_hit && right_hit){
+      //hit both sub tree
       if(left_t < right_t){
         t = left_t;
-        descendant = left_tree; 
+        descendant = left_tree;
       }else{
         t = right_t;
         descendant = right_tree; 
       }
-    }else if (!left_hit && !right_hit){
       return true;
-    }else if (left_hit && !right_hit){
-      t = left_t;
-      descendant = left_tree; 
-    }else if (right_hit && !left_hit){ 
-      t = right_t;
-      descendant = right_tree; 
     }
-    return true;
+    else if (left_hit){
+      //hit left sub tree
+      t = left_t;
+      descendant = left_tree;
+      return true;
+    }
+    else if (right_hit){
+      // hit right sub tree
+      t = right_t;
+      descendant = right_tree;
+      return true;
+    }
+    else{
+      // hit no sub tree
+      return false;
+    }
   }
-
-  // not hit
+  // no box hit
   return false;
   ////////////////////////////////////////////////////////////////////////////
 }
