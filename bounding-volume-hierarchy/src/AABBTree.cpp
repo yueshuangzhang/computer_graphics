@@ -38,7 +38,6 @@ AABBTree::AABBTree(
         axis = i;
       }
     }
-
     if(axis != -1 && max_distance != -1){
       // define the midpoint
       m = (box.max_corner[axis] - box.min_corner[axis]) / 2;
@@ -48,23 +47,30 @@ AABBTree::AABBTree(
     std::vector<std::shared_ptr<Object>> left_objects;
     std::vector<std::shared_ptr<Object>> right_objects;
     for (int i = 0; i < num_leaves; i++){
-      //objects[i]->box.center()[axis]
-      if (i < m){
-        left_objects.push_back(objects[i]);
+      // if the m is inf, then split the tree into two directly.
+      if(abs(m) == std::numeric_limits<double>::infinity()){
+        if (i < num_leaves / 2){
+          left_objects.push_back(objects[i]);
+        }
+        else{
+          right_objects.push_back(objects[i]);
+        }
       }
       else{
-        right_objects.push_back(objects[i]);
-      }
+        if (objects[i]->box.center()[axis] < m){
+          left_objects.push_back(objects[i]);
+        }
+        else{
+          right_objects.push_back(objects[i]);
+        }
+      }      
     }
-    // left = new bvh-node(object[0-k], (axis+1)%3)
+
+    // left = new bvh-node(object[0-k], (axis+1)%3, not used ere)
     this->left = std::make_shared<AABBTree>(left_objects, a_depth+1);
 
     // right = new bvh-node(object[k+1 to numleaves], (axis+1)%3)
     this->right = std::make_shared<AABBTree>(right_objects, a_depth+1);
-    
-    //bbox = combine left->bbox, right->bbox
-    // insert_box_into_box(objects[0]->box, this->box);
-    // insert_box_into_box(objects[1]->box, this->box);
 
   }
   ////////////////////////////////////////////////////////////////////////////
