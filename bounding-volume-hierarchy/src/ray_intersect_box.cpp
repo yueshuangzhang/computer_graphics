@@ -8,6 +8,7 @@ bool ray_intersect_box(
   const double max_t)
 {
   ////////////////////////////////////////////////////////////////////////////
+  // can make it simplier if have time
   // From text book page 299, the formulas are explained
   // get box info
   double x_min, y_min, z_min, x_max, y_max, z_max;

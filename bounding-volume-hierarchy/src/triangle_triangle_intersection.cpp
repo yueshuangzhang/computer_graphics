@@ -11,7 +11,6 @@ bool triangle_triangle_intersection(
   const Eigen::RowVector3d& B2)
 {
   ////////////////////////////////////////////////////////////////////////////
-
   // test edge-tri intersection for all 6 edges
 
   double t, min_t, max_t;

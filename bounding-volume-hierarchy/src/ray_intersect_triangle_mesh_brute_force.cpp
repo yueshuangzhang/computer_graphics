@@ -11,7 +11,7 @@ bool ray_intersect_triangle_mesh_brute_force(
   int & hit_f)
 {
   ////////////////////////////////////////////////////////////////////////////
-  // Replace with your code here:
+
   hit_t = 0;
   hit_f = 0;
 

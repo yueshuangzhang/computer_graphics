@@ -10,6 +10,7 @@ bool ray_intersect_triangle(
   double & t)
 {
   ////////////////////////////////////////////////////////////////////////////
+  // can make it simplier if have time
   // textbook P78: intersection occur when: e + td = a + beta(b-a) + gamma(c-a)
   // a, b, c vertices of tri
   // if and only if beta > 0, gamma > 0, beta + gamma < 1. 
