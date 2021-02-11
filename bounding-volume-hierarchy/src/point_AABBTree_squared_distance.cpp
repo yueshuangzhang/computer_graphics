@@ -32,40 +32,34 @@ bool point_AABBTree_squared_distance(
     // get the content in the pair
     double distance= top.first;
     std::shared_ptr<AABBTree> tree = std::dynamic_pointer_cast<AABBTree>(top.second);
-
-    // if the current distance is less than the max_sqrd
-    if (distance < max_sqrd) {
-      // it the tree has no subtrees, leaf node
-      if (!tree) {
-        if (distance >= min_sqrd) {
-          sqrd = distance;
-          descendant = top.second;
-          return true;
-        } else {
-          // not this leaf
-          continue;
-        }
-      }
-      else{
+      
+      if (tree) {
         // add subtree to the queue if not null
         //if the left sub tree is not empty
-        if (tree->left != NULL) {
+        if (tree->left) {
           distance = point_box_squared_distance(query, tree->left->box);
-          if (distance < max_sqrd){
+          if (distance <= max_sqrd){
+            // new node for left sub tree
             queue.push(std::make_pair(distance, tree->left));
           }
         }
         // if the right sub tree is not empty
-        if (tree->right != NULL) {
+        if (tree->right) {
           distance = point_box_squared_distance(query, tree->right->box);
-          if (distance < max_sqrd){
+          if (distance <= max_sqrd){
+            // new node for right sub tree
             queue.push(std::make_pair(distance, tree->right));
           }
         }
       }
-    } 
-    else {
-      return false;
+      else{ // it the tree has no subtrees, leaf node
+        if (distance >= min_sqrd) {
+          sqrd = distance;
+          descendant = top.second;
+          //end of search
+          return true;
+        }
+      }
     }
   }
   // queue empty before finding any object

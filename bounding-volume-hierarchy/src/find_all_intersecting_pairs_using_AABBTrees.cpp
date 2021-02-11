@@ -15,7 +15,7 @@ void find_all_intersecting_pairs_using_AABBTrees(
   leaf_pairs.clear(); // Empty the return vector
   if (!box_box_intersect(rootA->box, rootB->box))
     return; // roots dont intersect so nothing intersects
-  std::list<std::pair<std::shared_ptr<Object>, std::shared_ptr<Object>>> queue; // Queue of intersecting pairs
+  std::list<std::pair<std::shared_ptr<Object>, std::shared_ptr<Object>>> queue;
   queue.push_back(std::make_pair(rootA, rootB));
 
   while (!queue.empty()) {
