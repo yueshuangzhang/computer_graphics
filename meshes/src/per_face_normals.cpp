@@ -7,7 +7,12 @@ void per_face_normals(
   Eigen::MatrixXd & N)
 {
   ////////////////////////////////////////////////////////////////////////////
-  // Replace with your code:
   N = Eigen::MatrixXd::Zero(F.rows(),3);
+
+  for (int i = 0; i < F.rows(); i++){
+    // get each face normal by inputing the vertices
+    N.row(i) = triangle_area_normal(V.row(F(i, 0)), V.row(F(i, 1)), V.row(F(i, 2))).normalized();
+  }
+
   ////////////////////////////////////////////////////////////////////////////
 }
