@@ -22,20 +22,34 @@ bool write_obj(
   }
 
   for (int i = 0; i < V.rows(); i++){
-    f << "v " << V(i, 0) << " " << V(i, 1) << " " << V(i, 2) << std::endl;
+    f << "v";
+    for (int j  = 0; j < V.cols(); j++) {
+      f << " " << V(i, j);
+    }
+    f << std::endl;
   }
 
   for (int i = 0; i < UV.rows(); i++){
-    f << "vt " << UV(i, 0) << " " << UV(i, 1) << std::endl;
+    f << "vt";
+    for (int j = 0; j < UV.cols(); j++) {
+      f << " " << UV(i, j);
+    }
+    f << std::endl;
   }
+
+
   for (int i = 0; i < NV.rows(); i++){
-    f << "vn " << NV(i, 0) << " " << NV(i, 1) << " " << NV(i, 2) << std::endl;
+    f << "vn ";
+    for (int j = 0; j < NV.cols(); j++){
+       f << NV(i, j);
+    }
+    f << std::endl;
   }
 
   for (int i = 0; i < F.rows(); i++){
     f << "f ";
     for (int j = 0; j < F.cols(); j++){
-      f << F(i, j) << "/" << UF(i, j) << "/" << NF(i, j) << " ";
+      f << F(i, j) + 1<< "/" << UF(i, j) + 1<< "/" << NF(i, j) + 1<< " ";
     }
     f << std::endl;
   }
