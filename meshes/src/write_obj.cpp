@@ -15,7 +15,8 @@ bool write_obj(
   assert((F.size() == 0 || F.cols() == 3 || F.cols() == 4) && "F must have 3 or 4 columns");
   ////////////////////////////////////////////////////////////////////////////
   // write to file
-  std::ofstream f(filename);
+  std::ofstream f;
+  f.open(filename);
   if(!f.is_open()){
     std::cout<<"Fail to open file"<<std::endl;
     return false;

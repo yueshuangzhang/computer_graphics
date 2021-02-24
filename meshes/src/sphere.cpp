@@ -15,7 +15,7 @@ void sphere(
   //   num_faces_u  number of faces in the longitudinal direction ( num row)
   //   num_faces_v  number of faces in the latitudinal direction ( num col)
   int num_face = num_faces_u * num_faces_v;
-  int num_face_vertex = (num_faces_u + 1) * (num_faces_v+1);
+  int num_face_vertex = (num_faces_u + 1) * (num_faces_v + 1);
 
 
   // V
@@ -28,31 +28,29 @@ void sphere(
   NV.resize(num_face_vertex, 3);
   
   // find the coordinat of the vertex
-  // phi(x, y, z) = ([pi + atan2(y, x)] / (2 * pi), [pi - acos(z/x.norm)] / pi)
-  // atan2(y, x) = tan-1(y/x)
-  // reverse the formula: y/x = tan(u - pi) ------ z/|x| = cos(pi - v)* pi
   
   // formula: theta: z-r     phi: x - (r sin(theta))
   // x = r sin(theta) cos(phi)
   // y = r sin(theta) sin(phi)
   // z = r cos(theta)
+  // since the ball needs to rotate, therefore, change the coordinate
   
   double r = 1;
-  double delta_theta = M_PI / num_faces_u; // /#row
-  double delta_phi = 2 * M_PI / num_faces_v;// /#col
+  double delta_theta = M_PI / num_faces_v; // /#row
+  double delta_phi = 2 * M_PI / num_faces_u;// /#col
 
   int track = 0;
 
   for (int u = 0; u < num_faces_u + 1; u++){ // row
     for (int v = 0; v < num_faces_v + 1; v++){ // col
       double theta, phi;
-      theta = u * delta_theta;
-      phi = v * delta_phi;
+      theta = v * delta_theta;
+      phi = u * delta_phi;
 
       double x, y, z;
-      x = -r * sin(theta) * cos(phi);
-      y = -r * sin(theta) * sin(phi);
-      z = -r * cos(theta);
+      z = r * sin(theta) * cos(phi); // horizontal (back forth)
+      x = r * sin(theta) * sin(phi); // left right on surface
+      y = -r * cos(theta); //  vertical (flip up/down)
 
       
       V.row(track) = Eigen::RowVector3d(x, y, z);
@@ -62,10 +60,10 @@ void sphere(
       track ++;
     }
   }
+
   //   F  #F by 4 list of quad face indices into rows of V
   //   UF  #F by 4 list of quad face indices into rows of UV
   //   NF  #F by 4 list of quad face indices into rows of NV
-
 
   // F
   F.resize(num_face, 4);
