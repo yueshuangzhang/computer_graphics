@@ -17,6 +17,9 @@ void sphere(
   int num_face = num_faces_u * num_faces_v;
   int num_face_vertex = (num_faces_u + 1) * (num_faces_v+1);
 
+
+  // V
+  
   //   V  #V by 3 list of 3D corner vertex positions
   //   UV  #UV by 2 list of corner parameterization positions
   //   NV  #NV  by 3 list of 3D unit normal vectors
@@ -63,6 +66,8 @@ void sphere(
   //   UF  #F by 4 list of quad face indices into rows of UV
   //   NF  #F by 4 list of quad face indices into rows of NV
 
+
+  // F
   F.resize(num_face, 4);
   UF.resize(num_face, 4);
   NF.resize(num_face, 4);
