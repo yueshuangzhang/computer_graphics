@@ -1,6 +1,5 @@
 #include "sphere.h"
 #include <iostream>
-#include <cmath>
 
 void sphere(
   const int num_faces_u,
@@ -35,10 +34,9 @@ void sphere(
   // y = r sin(theta) sin(phi)
   // z = r cos(theta)
   
-  double pi = M_PI;
   double r = 1;
-  double delta_theta = pi / num_faces_u; // /#row
-  double delta_phi = 2 * pi / num_faces_v;// /#col
+  double delta_theta = M_PI / num_faces_u; // /#row
+  double delta_phi = 2 * M_PI / num_faces_v;// /#col
 
   int track = 0;
 

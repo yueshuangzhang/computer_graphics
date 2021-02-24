@@ -36,12 +36,12 @@ void cube(
         0, 1, 1;
 
   //   F  6 by 4 list of quad face indices into rows of V
-  F <<  0, 3, 2, 1, // bottom
-        0, 4, 7, 3, // left
-        3, 7, 6, 2, // front
-        2, 6, 5, 1, // right 
-        0, 1, 5, 4, // back
-        4, 5, 6, 7; // top
+  F <<  1,  2,  6,  5,
+        1,  5,  8,  4,
+        2,  3,  7,  6,
+        5,  6,  7,  8,
+        4,  3,  2,  1,
+        8,  7,  3,  4;
 
   //   UV  14 by 2 list of corner parameterization positions
   UV << 0, 0.25,
@@ -60,12 +60,12 @@ void cube(
         1, 0.5;
 
   //   UF  6 by 4 list of quad face indices into rows of UV
-  UF << 4, 8, 7, 3, // bottom
-        4, 3, 0, 1, // left
-        8, 11, 10, 9, // right
-        3, 7, 8, 2, // front
-        5, 9, 8, 4, // back
-        12, 1, 11, 13; // top
+  UF << 5,  9,  8,  4,
+        5,  4,  1,  2,
+        9, 12, 11,  8,
+        4,  8,  7,  3,
+        6, 10,  9,  5,
+        13, 11, 12, 14;
 
   //   NV  6 by 3 list of 3D unit normal vectors
   NV << 1, 0, 0,
@@ -76,11 +76,11 @@ void cube(
         0, 0, -1;
   
   //   NF  6 by 4 list of quad face indices into rows of NV
-  NF << 3, 3, 3, 3,
+  NF << 4, 4, 4, 4,
+        2, 2, 2, 2,
         1, 1, 1, 1,
-        0, 0, 0, 0,
-        4, 4, 4, 4,
         5, 5, 5, 5,
-        2, 2, 2, 2;
+        6, 6, 6, 6,
+        3, 3, 3, 3;
 
 }
