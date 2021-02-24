@@ -22,26 +22,33 @@ void per_corner_normals(
 
   //computing the area-weighted average of normals at incident faces 
   //whose normals deviate less than the provided threshold.
-  double area = 0;
-  Eigen::RowVector3d sum_v;
+  
+  Eigen::RowVector3d normal;
   Eigen::RowVector3d area_normal, adj_normal;
-  //Eigen::RowVector3d vertex(0, 0, 0);
 
   for (int i = 0; i < F.rows(); i++){
     for (int j = 0; j < F.cols(); j++){
       area_normal = triangle_area_normal(V.row(F(i, 0)), V.row(F(i, 1)), V.row(F(i, 2)));
-
+      area_normal = area_normal.normalized();
+      
+      Eigen::RowVector3d normal(0, 0, 0);
+      double area = 0;
+      
       std::vector<int> vertex = VF[F(i, j)];
       for (int k : vertex){
         adj_normal = triangle_area_normal(V.row(F(k, 0)), V.row(F(k, 1)), V.row(F(k, 2)));
+        adj_normal = adj_normal.normalized();
+
+        //check threshold
+        if(area_normal.dot(adj_normal) > (cos(corner_threshold * M_PI / 180.0))){
+          area = area + adj_normal.norm();
+          normal = normal + adj_normal;
+        }
+      
       }
-      //check threshold
-      if(area_normal.dot(adj_normal) > cos(corner_threshold * M_PI / 180.0)){
-        area = area + adj_normal.norm();
-        sum_v = sum_v + adj_normal;
-      }
-    //3 vertices
-    N.row(3 * i + j) = (sum_v / area).normalized();
+
+    N.row(F.cols() * i + j) = (normal / area).normalized();
+    
     }
   }
 }

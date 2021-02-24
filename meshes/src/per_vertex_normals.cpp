@@ -17,9 +17,10 @@ void per_vertex_normals(
   // V.rows() is number of vertices
   vertex_triangle_adjacency(F, V.rows(), VF);
 
-  Eigen::RowVector3d normal;
+  //Eigen::RowVector3d normal(0, 0, 0);
   // loop throught adjacency list
   for (int i = 0; i < VF.size(); i++){
+    Eigen::RowVector3d normal(0, 0, 0);
     for (int j = 0; j < VF[i].size(); j++){
       // get the vf's value at i j position
       normal = normal + triangle_area_normal(V.row(F(VF[i][j], 0)), V.row(F(VF[i][j], 1)), V.row(F(VF[i][j], 2)));
