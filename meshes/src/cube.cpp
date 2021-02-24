@@ -11,6 +11,13 @@ void cube(
   ////////////////////////////////////////////////////////////////////////////
 
   ////Hint:
+  
+  // V  8 by 3 list of 3D corner vertex positions
+  // F  6 by 4 list of quad face indices into rows of V
+  // UV  14 by 2 list of corner parameterization positions
+  // UF  6 by 4 list of quad face indices into rows of UV
+  // NV  6 by 3 list of 3D unit normal vectors
+  // NF  6 by 4 list of quad face indices into rows of NV
   V.resize(8,3);
   F.resize(6,4);
   UV.resize(14,2);
@@ -18,7 +25,7 @@ void cube(
   NV.resize(6,3);
   NF.resize(6,4);
 
-  //   V  8 by 3 list of 3D corner vertex positions
+  // V  8 by 3 list of 3D corner vertex positions
   V <<  0, 0, 0,
         1, 0, 0,
         1, 1, 0,
