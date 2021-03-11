@@ -24,7 +24,15 @@ out vec4 pos_cs_in;
 void main()
 {
   /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  pos_cs_in = vec4(pos_vs_in,1.0);
+
+  if (is_moon){
+    float angle = 0.5 * M_PI * animation_seconds;
+    vec4 shift = vec4(2 * sin(angle), 0, 2 * cos(angle), 0);
+    // shrink the model by 70%,
+    pos_cs_in = proj * view * (model(is_moon, animation_seconds) * uniform_scale(1 - 0.7) * vec4(pos_vs_in, 1.0) + shift);
+  }
+  else{
+    pos_cs_in = proj * view * model(is_moon, animation_seconds) * vec4(pos_vs_in, 1.0); 
+  }
   /////////////////////////////////////////////////////////////////////////////
 }

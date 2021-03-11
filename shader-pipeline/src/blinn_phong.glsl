@@ -1,6 +1,6 @@
 // Compute Blinn-Phong Shading given a material specification, a point on a
 // surface and a light direction. Assume the light is white and has a low
-// ambient intensity.
+// ambient ambient_intensity.
 //
 // Inputs:
 //   ka  rgb ambient color
@@ -21,8 +21,13 @@ vec3 blinn_phong(
   vec3 l)
 {
   /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  return vec3(1,1,1);
+  
+  vec3 ambient_intensity = vec3(1, 1, 1);
+
+  return ka * ambient_intensity 
+        + kd * ambient_intensity * max(0, dot(n, l)) 
+        + ks * ambient_intensity * pow(max(0, dot(n, normalize(v+l))), p);
+
   /////////////////////////////////////////////////////////////////////////////
 }
 

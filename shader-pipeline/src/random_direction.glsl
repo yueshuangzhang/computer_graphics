@@ -9,7 +9,15 @@
 vec3 random_direction( vec3 seed)
 {
   /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  return vec3(1,0,0);
+  // use the seed
+  vec2 random_vec = random2(seed);
+  float theta = 2 * M_PI * random_vec.x; 
+  float phi = M_PI * random_vec.y;
+
+  float x = sin(phi)*cos(theta);
+  float y = sin(phi)*sin(theta);
+  float z = cos(phi);
+ 
+  return normalize(vec3(x, y, z));
   /////////////////////////////////////////////////////////////////////////////
 }

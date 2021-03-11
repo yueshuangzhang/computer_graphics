@@ -21,7 +21,43 @@ out vec3 color;
 void main()
 {
   /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  color = vec3(1,1,1);
+  vec3 T, B;
+  tangent(normalize(sphere_fs_in), T, B);
+
+  vec3 bp = bump_position(is_moon, sphere_fs_in);
+
+  vec3 bump1 = (bump_position(is_moon, sphere_fs_in + 0.0001 * T) - bp) / 0.0001;
+  vec3 bump2 = (bump_position(is_moon, sphere_fs_in + 0.0001 * B) - bp) / 0.0001;
+
+
+  vec3 n = normalize(cross(bump1, bump2));
+
+  // n
+  if(dot(n, sphere_fs_in) < 0){
+    n = (-1) * n;
+  }
+
+  //vec3 blinn_phong(ka, kd, ks, p, n, v, l)
+
+  // v
+  vec3 v = normalize ((-1) * view_pos_fs_in.xyz / view_pos_fs_in.w);
+
+  // l 
+  vec3 l = point_light.xyz / point_light.w - view_pos_fs_in.xyz / view_pos_fs_in.w;
+
+  if (is_moon){
+    vec3 ka = vec3(0.12, 0.1, 0.1);
+    vec3 ks = vec3(0.9, 0.9, 0.9);
+    vec3 kd = vec3(0.475, 0.4, 0.4);
+    float p = 1000;
+
+  }else{
+    vec3 ka = vec3(0.2, 0.3, 0.5);
+    vec3 ks = vec3(0.6, 0.7, 0.7);
+    vec3 kd = vec3(0.1, 0.3, 0.8);
+    float p = 500;
+  }
+
+  color = blinn_phong(ka, kd, ks, p, n, v, l);
   /////////////////////////////////////////////////////////////////////////////
 }

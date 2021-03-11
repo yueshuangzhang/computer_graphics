@@ -1,5 +1,5 @@
 // clang++ -std=c++11 main.cpp -I include -I $LIBIGL/include -I /usr/local/libigl/external/eigen/ -framework OpenGL -L/usr/local/lib/ -lglfw && ./a.out
-//
+// ./shaderpipeline ../data/test-01.json
 
 // make sure the modern opengl headers are included before any others
 #include "gl.h"
