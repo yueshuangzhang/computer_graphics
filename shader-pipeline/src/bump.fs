@@ -45,17 +45,19 @@ void main()
   // l 
   vec3 l = point_light.xyz / point_light.w - view_pos_fs_in.xyz / view_pos_fs_in.w;
 
+  vec3 ka, ks, kd;
+  float p;
   if (is_moon){
-    vec3 ka = vec3(0.12, 0.1, 0.1);
-    vec3 ks = vec3(0.9, 0.9, 0.9);
-    vec3 kd = vec3(0.475, 0.4, 0.4);
-    float p = 1000;
+    ka = vec3(0.12, 0.1, 0.1);
+    ks = vec3(0.9, 0.9, 0.9);
+    kd = vec3(0.475, 0.4, 0.4);
+    p = 1000;
 
   }else{
-    vec3 ka = vec3(0.2, 0.3, 0.5);
-    vec3 ks = vec3(0.6, 0.7, 0.7);
-    vec3 kd = vec3(0.1, 0.3, 0.8);
-    float p = 500;
+    ka = vec3(0.2, 0.3, 0.5);
+    ks = vec3(0.6, 0.7, 0.7);
+    kd = vec3(0.1, 0.3, 0.8);
+    p = 500;
   }
 
   color = blinn_phong(ka, kd, ks, p, n, v, l);

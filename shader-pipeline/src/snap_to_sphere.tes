@@ -28,30 +28,31 @@ void main()
   /////////////////////////////////////////////////////////////////////////////
   // Replace with your code 
 
-  // vec3 interpolate(vec3 bary, vec3 v0, vec3 v1, vec3 v2)
-  vec4 interpolate_result = vec4(normalize(interpolate(gl_TessCoord, pos_es_in[0].xyz, pos_es_in[1].xyz, pos_es_in[2].xyz)), 1.0);
-  vec4 interpolate_vector = (interpolate_result, 1.0);
-
-  sphere_fs_in = interpolate_vector.xyz;
-  normal_fs_in = (transpose(inverse(view))*transpose(inverse(model(is_moon, animation_seconds)))*interpolate_vector).xyz;
+  vec4 interpolated_result = vec4(normalize(interpolate(gl_TessCoord, pos_es_in[0].xyz, pos_es_in[1].xyz, pos_es_in[2].xyz)), 1.0);
+  
+  // out vec4 pos_fs_in;
+  // out vec4 view_pos_fs_in;
 
   if (is_moon){
     float angle = 0.5 * M_PI * animation_seconds;
     vec4 shift = vec4(2 * sin(angle), 0, 2 * cos(angle), 0);
-    // shrink the model by 70%, SAME AS model_view_projection file
-    vec4 pos_cs_in = proj * view * (model(is_moon, animation_seconds) * uniform_scale(1 - 0.7) * vec4(pos_vs_in, 1.0) + shift);
-
-    view_pos_fs_in = view * (interpolate_vector * model(is_moon, animation_seconds) + shift);
-  
+    // shrink the model by 70%,
+    pos_fs_in = proj * view * (model(is_moon, animation_seconds) * uniform_scale(1 - 0.7) * interpolated_result + shift);
+    view_pos_fs_in = view * (model(is_moon, animation_seconds) * interpolated_result + shift);
   }
-
   else{
-    pos_cs_in = proj * view * model(is_moon, animation_seconds) * vec4(pos_vs_in, 1.0); 
-    view_pos_fs_in = view * interpolate_vector * model(is_moon, animation_sfinterpolate_vectoreconds);
+    pos_fs_in = proj * view * model(is_moon, animation_seconds) * interpolated_result;
+    view_pos_fs_in = view * model(is_moon, animation_seconds) * interpolated_result;
   }
+
+
+  // out vec3 normal_fs_in;
+  // out vec3 sphere_fs_in;
+  mat4 model_view = view * model(is_moon, animation_seconds);
+
+  normal_fs_in = (transpose(model_view) * interpolated_result).xyz;
+  sphere_fs_in = interpolated_result.xyz;
   
   gl_Position = pos_fs_in;
   /////////////////////////////////////////////////////////////////////////////
 }
-
-
