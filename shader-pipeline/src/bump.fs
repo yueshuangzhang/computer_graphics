@@ -41,8 +41,8 @@ void main()
 
 
   mat4 model_view = view * model(is_moon, animation_seconds);
-  vec3 normal_fs = (transpose(model_view) * vec4(normal, 1.0)).xyz;
-  vec3 n = normalize(normal_fs);
+  vec3 trans_model_view = (transpose(model_view) * vec4(normal, 1.0)).xyz;
+  vec3 n = normalize(trans_model_view);
   
   vec3 v = normalize(view_pos_fs_in.xyz / view_pos_fs_in.w);
   vec3 l = normalize(point_light.xyz / point_light.w - view_pos_fs_in.xyz / view_pos_fs_in.w);

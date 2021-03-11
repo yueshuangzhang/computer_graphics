@@ -36,7 +36,6 @@ void main()
   if (is_moon){
     float angle = 0.5 * M_PI * animation_seconds;
     vec4 shift = vec4(2 * sin(angle), 0, 2 * cos(angle), 0);
-    // shrink the model by 70%,
     pos_fs_in = proj * view * (model(is_moon, animation_seconds) * uniform_scale(1 - 0.7) * interpolated_result + shift);
     view_pos_fs_in = view * (model(is_moon, animation_seconds) * interpolated_result + shift);
   }
@@ -48,7 +47,7 @@ void main()
 
   // out vec3 normal_fs_in;
   // out vec3 sphere_fs_in;
-  mat4 model_view = view * model(is_moon, animation_seconds);
+  mat4 model_view = inverse(view) * inverse(model(is_moon, animation_seconds));
 
   normal_fs_in = (transpose(model_view) * interpolated_result).xyz;
   sphere_fs_in = interpolated_result.xyz;
