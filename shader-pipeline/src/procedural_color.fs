@@ -18,7 +18,33 @@ out vec3 color;
 void main()
 {
   /////////////////////////////////////////////////////////////////////////////
-  // Replace with your code 
-  color = vec3(1,1,1);
+
+  float angle = 0.5 * M_PI * animation_seconds;
+  vec4 point_light = view * vec4(4 * cos(angle), 2, 4 * sin(angle), 1);
+
+  float noise = abs(sin((10 * perlin_noise(sphere_fs_in)) * M_PI));
+
+  vec3 n = normalize(normal_fs_in);
+  vec3 v = normalize(-1 * view_pos_fs_in.xyz / view_pos_fs_in.w);
+  vec3 l = normalize(point_light.xyz / point_light.w - view_pos_fs_in.xyz / view_pos_fs_in.w);
+
+
+  vec3 ka, ks, kd;
+  float p;
+  if (is_moon){
+    ka = vec3(0.12, 0.1, 0.1);
+    ks = vec3(0.9, 0.9, 0.9);
+    kd = vec3(0.475, 0.4, 0.4);
+    p = 1000;
+
+  }else{
+    ka = vec3(0.2, 0.3, 0.5);
+    ks = vec3(0.6, 0.7, 0.7);
+    kd = vec3(0.1, 0.3, 0.8);
+    p = 500;
+  }
+
+  color = blinn_phong(ka, kd, ks, p, n, v, l);
+
   /////////////////////////////////////////////////////////////////////////////
 }
