@@ -30,20 +30,24 @@ void main()
   vec3 bump2 = (bump_position(is_moon, sphere_fs_in + 0.0001 * B) - bp) / 0.0001;
 
 
-  vec3 n = normalize(cross(bump1, bump2));
-
+  vec3 normal = normalize(cross(bump1, bump2));
   // n
-  if(dot(n, sphere_fs_in) < 0){
-    n = (-1) * n;
+  if(dot(normal, sphere_fs_in) < 0){
+    normal = (-1) * normal;
   }
 
+  float angle = 0.5 * M_PI * animation_seconds;
+  vec4 point_light = view * vec4(4 * cos(angle), 2, 4 * sin(angle), 1);
+
+
+  mat4 model_view = view * model(is_moon, animation_seconds);
+  vec3 normal_fs = (transpose(model_view) * vec4(normal, 1.0)).xyz;
+  vec3 n = normalize(normal_fs);
+  
+  vec3 v = normalize(view_pos_fs_in.xyz / view_pos_fs_in.w);
+  vec3 l = normalize(point_light.xyz / point_light.w - view_pos_fs_in.xyz / view_pos_fs_in.w);
+
   //vec3 blinn_phong(ka, kd, ks, p, n, v, l)
-
-  // v
-  vec3 v = normalize ((-1) * view_pos_fs_in.xyz / view_pos_fs_in.w);
-
-  // l 
-  vec3 l = point_light.xyz / point_light.w - view_pos_fs_in.xyz / view_pos_fs_in.w;
 
   vec3 ka, ks, kd;
   float p;
