@@ -20,7 +20,7 @@ void main()
   /////////////////////////////////////////////////////////////////////////////
 
   float angle = 0.5 * M_PI * animation_seconds;
-  vec4 point_light = view * vec4(4 * cos(angle), 2, 4 * sin(angle), 1);
+  vec4 point_light = view * vec4(8 * cos(angle), 4, 8 * sin(angle), 1);
 
   float noise = abs(sin((10 * perlin_noise(sphere_fs_in)) * M_PI));
 
@@ -32,16 +32,16 @@ void main()
   vec3 ka, ks, kd;
   float p;
   if (is_moon){
-    ka = vec3(0.12, 0.1, 0.1);
-    ks = vec3(0.9, 0.9, 0.9);
-    kd = vec3(0.475, 0.4, 0.4);
+    ka = vec3(0.3, 0.3, 0.3);
+    kd = vec3(0.3, 0.3, 0.3);
+    ks = vec3(0.3, 0.3, 0.3);
     p = 1000;
 
   }else{
-    ka = vec3(0.2, 0.3, 0.5);
-    ks = vec3(0.6, 0.7, 0.7);
-    kd = vec3(0.1, 0.3, 0.8);
-    p = 500;
+    ka = vec3(0.2, 0.4, 1);
+    kd = vec3(0.2, 0.4, 0.7);
+    ks = vec3(0.2, 0.2, 0.2);
+    p = 1000;
   }
 
   color = blinn_phong(ka, kd, ks, p, n, v, l);

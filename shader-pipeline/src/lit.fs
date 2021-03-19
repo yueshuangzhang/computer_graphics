@@ -21,7 +21,8 @@ void main()
 
   float angle = 0.5 * M_PI * animation_seconds;
 
-  vec4 point_light = view * vec4(4 * cos(angle), 2, 4 * sin(angle), 1);
+  vec4 point_light = view * vec4(8 * cos(angle), 4, 8 * sin(angle), 1);
+  
 
   vec3 n = normalize(normal_fs_in);
   vec3 v = normalize(view_pos_fs_in.xyz / view_pos_fs_in.w);
@@ -32,17 +33,17 @@ void main()
   float p;
   
   if (is_moon){
-    ka = vec3(0.05, 0.05, 0.05);
-    ks = vec3(0.5, 0.5, 0.5);
-    kd = vec3(1, 1, 1);
+    ka = vec3(0.3, 0.3, 0.3);
+    kd = vec3(0.3, 0.3, 0.3);
+    ks = vec3(0.3, 0.3, 0.3);
     p = 1000;
 
   }
   else{
-    ka = vec3(0.05, 0.05, 0.05);
-    ks = vec3(0.2, 0.2, 0.8);
-    kd = vec3(1, 1, 1);
-    p = 500;
+    ka = vec3(0.2, 0.4, 1);
+    kd = vec3(0.2, 0.4, 0.7);
+    ks = vec3(0.2, 0.2, 0.2);
+    p = 1000;
 
   }
 
