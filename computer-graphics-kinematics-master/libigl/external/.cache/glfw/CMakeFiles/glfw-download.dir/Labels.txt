@@ -1,0 +1,14 @@
+# Target labels
+ glfw-download
+# Source files and their labels
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glfw/CMakeFiles/glfw-download
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glfw/CMakeFiles/glfw-download.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glfw/CMakeFiles/glfw-download-complete.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glfw/glfw-download-prefix/src/glfw-download-stamp/glfw-download-install.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glfw/glfw-download-prefix/src/glfw-download-stamp/glfw-download-mkdir.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glfw/glfw-download-prefix/src/glfw-download-stamp/glfw-download-download.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glfw/glfw-download-prefix/src/glfw-download-stamp/glfw-download-update.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glfw/glfw-download-prefix/src/glfw-download-stamp/glfw-download-patch.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glfw/glfw-download-prefix/src/glfw-download-stamp/glfw-download-configure.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glfw/glfw-download-prefix/src/glfw-download-stamp/glfw-download-build.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glfw/glfw-download-prefix/src/glfw-download-stamp/glfw-download-test.rule

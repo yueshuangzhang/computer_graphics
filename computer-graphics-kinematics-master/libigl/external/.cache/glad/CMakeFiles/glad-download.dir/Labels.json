@@ -1,0 +1,46 @@
+{
+	"sources" : 
+	[
+		{
+			"file" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glad/CMakeFiles/glad-download"
+		},
+		{
+			"file" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glad/CMakeFiles/glad-download.rule"
+		},
+		{
+			"file" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glad/CMakeFiles/glad-download-complete.rule"
+		},
+		{
+			"file" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glad/glad-download-prefix/src/glad-download-stamp/glad-download-install.rule"
+		},
+		{
+			"file" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glad/glad-download-prefix/src/glad-download-stamp/glad-download-mkdir.rule"
+		},
+		{
+			"file" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glad/glad-download-prefix/src/glad-download-stamp/glad-download-download.rule"
+		},
+		{
+			"file" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glad/glad-download-prefix/src/glad-download-stamp/glad-download-update.rule"
+		},
+		{
+			"file" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glad/glad-download-prefix/src/glad-download-stamp/glad-download-patch.rule"
+		},
+		{
+			"file" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glad/glad-download-prefix/src/glad-download-stamp/glad-download-configure.rule"
+		},
+		{
+			"file" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glad/glad-download-prefix/src/glad-download-stamp/glad-download-build.rule"
+		},
+		{
+			"file" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/glad/glad-download-prefix/src/glad-download-stamp/glad-download-test.rule"
+		}
+	],
+	"target" : 
+	{
+		"labels" : 
+		[
+			"glad-download"
+		],
+		"name" : "glad-download"
+	}
+}

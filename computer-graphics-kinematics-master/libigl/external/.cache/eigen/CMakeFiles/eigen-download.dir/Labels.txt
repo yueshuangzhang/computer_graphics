@@ -1,0 +1,14 @@
+# Target labels
+ eigen-download
+# Source files and their labels
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/eigen/CMakeFiles/eigen-download
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/eigen/CMakeFiles/eigen-download.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/eigen/CMakeFiles/eigen-download-complete.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/eigen/eigen-download-prefix/src/eigen-download-stamp/eigen-download-install.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/eigen/eigen-download-prefix/src/eigen-download-stamp/eigen-download-mkdir.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/eigen/eigen-download-prefix/src/eigen-download-stamp/eigen-download-download.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/eigen/eigen-download-prefix/src/eigen-download-stamp/eigen-download-update.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/eigen/eigen-download-prefix/src/eigen-download-stamp/eigen-download-patch.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/eigen/eigen-download-prefix/src/eigen-download-stamp/eigen-download-configure.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/eigen/eigen-download-prefix/src/eigen-download-stamp/eigen-download-build.rule
+/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/computer-graphics-kinematics-master/libigl/external/.cache/eigen/eigen-download-prefix/src/eigen-download-stamp/eigen-download-test.rule
