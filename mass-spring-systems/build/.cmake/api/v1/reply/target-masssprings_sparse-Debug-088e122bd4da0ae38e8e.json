@@ -1,0 +1,231 @@
+{
+	"artifacts" : 
+	[
+		{
+			"path" : "masssprings_sparse"
+		}
+	],
+	"backtrace" : 1,
+	"backtraceGraph" : 
+	{
+		"commands" : 
+		[
+			"add_executable",
+			"target_link_libraries",
+			"target_compile_options",
+			"include_directories"
+		],
+		"files" : 
+		[
+			"CMakeLists.txt"
+		],
+		"nodes" : 
+		[
+			{
+				"file" : 0
+			},
+			{
+				"command" : 0,
+				"file" : 0,
+				"line" : 24,
+				"parent" : 0
+			},
+			{
+				"command" : 1,
+				"file" : 0,
+				"line" : 31,
+				"parent" : 0
+			},
+			{
+				"command" : 2,
+				"file" : 0,
+				"line" : 25,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 14,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
+				"line" : 15,
+				"parent" : 0
+			}
+		]
+	},
+	"compileGroups" : 
+	[
+		{
+			"compileCommandFragments" : 
+			[
+				{
+					"fragment" : " -fPIC -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk"
+				},
+				{
+					"backtrace" : 3,
+					"fragment" : "-DSPARSE"
+				},
+				{
+					"fragment" : "-std=gnu++11"
+				}
+			],
+			"includes" : 
+			[
+				{
+					"backtrace" : 4,
+					"path" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/include"
+				},
+				{
+					"backtrace" : 5,
+					"path" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/json"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/libigl/external/glad/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/libigl/external/glfw/include"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/libigl/external/stb"
+				},
+				{
+					"backtrace" : 2,
+					"path" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/build/stb_image"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/libigl/cmake/../include"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/libigl/cmake/../external/eigen"
+				},
+				{
+					"backtrace" : 2,
+					"isSystem" : true,
+					"path" : "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/System/Library/Frameworks/OpenGL.framework"
+				}
+			],
+			"language" : "CXX",
+			"languageStandard" : 
+			{
+				"backtraces" : 
+				[
+					2
+				],
+				"standard" : "11"
+			},
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"dependencies" : 
+	[
+		{
+			"backtrace" : 2,
+			"id" : "lib::@6890427a1f51a3e7e1df"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "glad::@74ca6b3581f0d7366b1f"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "glfw::@12507ebf64a5258d241e"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "igl_stb_image::@70b07a00fce5600454d3"
+		}
+	],
+	"id" : "masssprings_sparse::@6890427a1f51a3e7e1df",
+	"link" : 
+	{
+		"commandFragments" : 
+		[
+			{
+				"fragment" : "-fPIC -g",
+				"role" : "flags"
+			},
+			{
+				"fragment" : "",
+				"role" : "flags"
+			},
+			{
+				"backtrace" : 2,
+				"fragment" : "liblib.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "glfw/src/libglfw3.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-framework Cocoa",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-framework IOKit",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-framework CoreFoundation",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "-framework CoreVideo",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "/Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk/System/Library/Frameworks/OpenGL.framework/OpenGL.tbd",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "glad/libglad.a",
+				"role" : "libraries"
+			},
+			{
+				"fragment" : "stb_image/libigl_stb_image.a",
+				"role" : "libraries"
+			}
+		],
+		"language" : "CXX"
+	},
+	"name" : "masssprings_sparse",
+	"nameOnDisk" : "masssprings_sparse",
+	"paths" : 
+	{
+		"build" : ".",
+		"source" : "."
+	},
+	"sourceGroups" : 
+	[
+		{
+			"name" : "Source Files",
+			"sourceIndexes" : 
+			[
+				0
+			]
+		}
+	],
+	"sources" : 
+	[
+		{
+			"backtrace" : 1,
+			"compileGroupIndex" : 0,
+			"path" : "main.cpp",
+			"sourceGroupIndex" : 0
+		}
+	],
+	"type" : "EXECUTABLE"
+}
