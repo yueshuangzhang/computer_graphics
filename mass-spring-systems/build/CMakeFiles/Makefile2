@@ -174,10 +174,10 @@ stb_image/clean: stb_image/CMakeFiles/igl_stb_image.dir/clean
 # Target rules for target CMakeFiles/masssprings_sparse.dir
 
 # All Build rule for target.
-CMakeFiles/masssprings_sparse.dir/all: CMakeFiles/lib.dir/all
 CMakeFiles/masssprings_sparse.dir/all: glad/CMakeFiles/glad.dir/all
 CMakeFiles/masssprings_sparse.dir/all: glfw/src/CMakeFiles/glfw.dir/all
 CMakeFiles/masssprings_sparse.dir/all: stb_image/CMakeFiles/igl_stb_image.dir/all
+CMakeFiles/masssprings_sparse.dir/all: CMakeFiles/lib.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/masssprings_sparse.dir/build.make CMakeFiles/masssprings_sparse.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/masssprings_sparse.dir/build.make CMakeFiles/masssprings_sparse.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/build/CMakeFiles --progress-num=30,31 "Built target masssprings_sparse"
@@ -204,10 +204,10 @@ CMakeFiles/masssprings_sparse.dir/clean:
 # Target rules for target CMakeFiles/masssprings_dense.dir
 
 # All Build rule for target.
-CMakeFiles/masssprings_dense.dir/all: CMakeFiles/lib.dir/all
 CMakeFiles/masssprings_dense.dir/all: glad/CMakeFiles/glad.dir/all
 CMakeFiles/masssprings_dense.dir/all: glfw/src/CMakeFiles/glfw.dir/all
 CMakeFiles/masssprings_dense.dir/all: stb_image/CMakeFiles/igl_stb_image.dir/all
+CMakeFiles/masssprings_dense.dir/all: CMakeFiles/lib.dir/all
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/masssprings_dense.dir/build.make CMakeFiles/masssprings_dense.dir/depend
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/masssprings_dense.dir/build.make CMakeFiles/masssprings_dense.dir/build
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/build/CMakeFiles --progress-num=28,29 "Built target masssprings_dense"

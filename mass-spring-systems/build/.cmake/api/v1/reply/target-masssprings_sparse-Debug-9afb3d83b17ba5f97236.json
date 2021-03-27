@@ -2,7 +2,7 @@
 	"artifacts" : 
 	[
 		{
-			"path" : "masssprings_dense"
+			"path" : "masssprings_sparse"
 		}
 	],
 	"backtrace" : 1,
@@ -12,6 +12,7 @@
 		[
 			"add_executable",
 			"target_link_libraries",
+			"target_compile_options",
 			"include_directories"
 		],
 		"files" : 
@@ -26,23 +27,29 @@
 			{
 				"command" : 0,
 				"file" : 0,
-				"line" : 23,
+				"line" : 24,
 				"parent" : 0
 			},
 			{
 				"command" : 1,
 				"file" : 0,
-				"line" : 28,
+				"line" : 31,
 				"parent" : 0
 			},
 			{
 				"command" : 2,
 				"file" : 0,
+				"line" : 25,
+				"parent" : 0
+			},
+			{
+				"command" : 3,
+				"file" : 0,
 				"line" : 14,
 				"parent" : 0
 			},
 			{
-				"command" : 2,
+				"command" : 3,
 				"file" : 0,
 				"line" : 15,
 				"parent" : 0
@@ -58,17 +65,21 @@
 					"fragment" : " -fPIC -g -isysroot /Applications/Xcode.app/Contents/Developer/Platforms/MacOSX.platform/Developer/SDKs/MacOSX11.1.sdk"
 				},
 				{
+					"backtrace" : 3,
+					"fragment" : "-DSPARSE"
+				},
+				{
 					"fragment" : "-std=gnu++11"
 				}
 			],
 			"includes" : 
 			[
 				{
-					"backtrace" : 3,
+					"backtrace" : 4,
 					"path" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/include"
 				},
 				{
-					"backtrace" : 4,
+					"backtrace" : 5,
 					"path" : "/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/json"
 				},
 				{
@@ -122,10 +133,6 @@
 	[
 		{
 			"backtrace" : 2,
-			"id" : "lib::@6890427a1f51a3e7e1df"
-		},
-		{
-			"backtrace" : 2,
 			"id" : "glad::@74ca6b3581f0d7366b1f"
 		},
 		{
@@ -135,9 +142,13 @@
 		{
 			"backtrace" : 2,
 			"id" : "igl_stb_image::@70b07a00fce5600454d3"
+		},
+		{
+			"backtrace" : 2,
+			"id" : "lib::@6890427a1f51a3e7e1df"
 		}
 	],
-	"id" : "masssprings_dense::@6890427a1f51a3e7e1df",
+	"id" : "masssprings_sparse::@6890427a1f51a3e7e1df",
 	"link" : 
 	{
 		"commandFragments" : 
@@ -190,8 +201,8 @@
 		],
 		"language" : "CXX"
 	},
-	"name" : "masssprings_dense",
-	"nameOnDisk" : "masssprings_dense",
+	"name" : "masssprings_sparse",
+	"nameOnDisk" : "masssprings_sparse",
 	"paths" : 
 	{
 		"build" : ".",

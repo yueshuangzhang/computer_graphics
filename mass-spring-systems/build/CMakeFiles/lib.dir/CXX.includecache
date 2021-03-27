@@ -10,30 +10,12 @@
 Eigen/Core
 -
 
-../include/fast_mass_springs_precomputation_sparse.h
-Eigen/Core
--
-Eigen/Sparse
--
-
 ../include/fast_mass_springs_step_dense.h
 Eigen/Dense
 -
 
-../include/fast_mass_springs_step_sparse.h
-Eigen/Core
--
-Eigen/Sparse
--
-
 ../include/signed_incidence_matrix_dense.h
 Eigen/Core
--
-
-../include/signed_incidence_matrix_sparse.h
-Eigen/Core
--
-Eigen/Sparse
 -
 
 ../libigl/external/eigen/Eigen/Cholesky
@@ -1420,33 +1402,13 @@ signed_incidence_matrix_dense.h
 Eigen/Dense
 -
 
-/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/src/fast_mass_springs_precomputation_sparse.cpp
-fast_mass_springs_precomputation_sparse.h
-/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/src/fast_mass_springs_precomputation_sparse.h
-signed_incidence_matrix_sparse.h
-/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/src/signed_incidence_matrix_sparse.h
-vector
--
-
 /Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/src/fast_mass_springs_step_dense.cpp
 fast_mass_springs_step_dense.h
 /Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/src/fast_mass_springs_step_dense.h
 igl/matlab_format.h
 -
 
-/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/src/fast_mass_springs_step_sparse.cpp
-fast_mass_springs_step_sparse.h
-/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/src/fast_mass_springs_step_sparse.h
-igl/matlab_format.h
--
-
 /Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/src/signed_incidence_matrix_dense.cpp
 signed_incidence_matrix_dense.h
 /Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/src/signed_incidence_matrix_dense.h
-
-/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/src/signed_incidence_matrix_sparse.cpp
-signed_incidence_matrix_sparse.h
-/Users/Zoe/Desktop/Year_4_term_2/CSC317/Assignment/computer_graphics/mass-spring-systems/src/signed_incidence_matrix_sparse.h
-vector
--
 
