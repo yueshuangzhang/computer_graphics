@@ -22,7 +22,7 @@ void fast_mass_springs_step_dense(
 
   Eigen::MatrixXd y;
   y.resize(V.rows(), 3);
-  y = ((M * (2 * Ucur - Uprev)) / pow(delta_t, 2)) + fext;
+  y = (M * (2 * Ucur - Uprev)) / pow(delta_t, 2) + fext;
 
   Eigen::MatrixXd d;
   d.resize(E.rows(), 3);
